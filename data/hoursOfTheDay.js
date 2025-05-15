@@ -1,7 +1,8 @@
 /*
     To-Do List 
-        : turn taskText into an object to contain the title, description and experience points 
-        
+        -turn taskText into an object to contain the title, description and experience points 
+        -Add quatersOfTheHour to Each hour and make it so that updating the hour updates each
+            quater, but updating the quater only update the quater "itself only". 
 */ 
 
 export const hoursOfTheDays = [
@@ -16,11 +17,10 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
-    },
+        isUpdating: false
+    }, 
     {
-        id: "second-hour-01-00-00-morning",
+        id: "second-hour-01/-00-00-morning",
         startTime: "01:00",
         endTime: "01:59",
         timedTask: {
@@ -30,8 +30,7 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "third-hour-02-00-00-morning",
@@ -44,8 +43,7 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "fourth-hour-03-00-00-morning",
@@ -58,8 +56,7 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "fifth-hour-04-00-00-morning",
@@ -73,8 +70,7 @@ export const hoursOfTheDays = [
         },
 
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "sixth-hour-05-00-00-morning",
@@ -87,8 +83,7 @@ export const hoursOfTheDays = [
             experiencePoints: 150,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "seventh-hour-06-00-00-morning",
@@ -101,8 +96,7 @@ export const hoursOfTheDays = [
             experiencePoints: 40,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "eighth-hour-07-00-00-morning",
@@ -115,8 +109,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "ninth-hour-08-00-00-morning",
@@ -129,8 +122,7 @@ export const hoursOfTheDays = [
             experiencePoints: 60,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "tenth-hour-09-00-00-morning",
@@ -143,8 +135,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "eleventh-hour-10-00-00-morning",
@@ -157,8 +148,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "twelveth-hour-11-00-00-morning",
@@ -171,8 +161,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "thirteenth-hour-12-00-00-afternoon",
@@ -185,8 +174,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "fourteenth-hour-13-00-00-afternoon",
@@ -199,8 +187,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "fifteenth-hour-14-00-00-afternoon",
@@ -213,8 +200,7 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "sixteenth-hour-15-00-00-afternoon",
@@ -227,55 +213,12 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "seventeenth-hour-16-00-00-afternoon",
         startTime: "16:00",
         endTime: "16:59",
-        timedTask: {
-            id: '01-taskCardio',
-            titleText: 'Hit some cardio',
-            descriptiveText: 'Pick an exercise to do between running, cycling or walking if it is the first week',
-            experiencePoints: 40,
-        },
-        activeTime: false,
-        isUpdating: false,
-        isRemoving: false
-    },
-    {
-        id: "eighteenth-hour-17-00-00-afternoon",
-        startTime: "17:00",
-        endTime: "17:59",
-        taskText: 'Shower',timedTask: {
-            id: '01-taskShower',
-            titleText: 'Shower after cardio',
-            descriptiveText: 'Kick it to the shower after doing some cardio',
-            experiencePoints: 200,
-        },
-        activeTime: false,
-        isUpdating: false,
-        isRemoving: false
-    },
-    {
-        id: "ninteenth-hour-18-00-00-night",
-        startTime: "18:00",
-        endTime: "18:59",
-        timedTask: {
-            id: '01-taskSideQuest',
-            titleText: 'Side Quest Studies',
-            descriptiveText: 'Check your list of side quest list for skills to train',
-            experiencePoints: 100,
-        },
-        activeTime: false,
-        isUpdating: false,
-        isRemoving: false
-    },
-    {
-        id: "twentyth-hour-19-00-00-night",
-        startTime: "19:00",
-        endTime: "19:59",
         timedTask: {
             id: '',
             titleText: '',
@@ -283,8 +226,47 @@ export const hoursOfTheDays = [
             experiencePoints: 0,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
+    },
+    {
+        id: "eighteenth-hour-17-00-00-afternoon",
+        startTime: "17:00",
+        endTime: "17:59",
+        taskText: 'Shower',
+        timedTask: {
+            id: '06-taskCardio',
+            titleText: 'Hit some cardio',
+            descriptiveText: 'Pick an exercise to do between running, cycling or walking if it is the first week',
+            experiencePoints: 200,
+        },
+        activeTime: false,
+        isUpdating: false
+    },
+    {
+        id: "ninteenth-hour-18-00-00-night",
+        startTime: "18:00",
+        endTime: "18:59",
+        timedTask: {
+            id: '07-taskShower',
+            titleText: 'Shower after cardio',
+            descriptiveText: 'Kick it to the shower after doing some cardio',
+            experiencePoints: 40,
+        },
+        activeTime: false,
+        isUpdating: false
+    },
+    {
+        id: "twentyth-hour-19-00-00-night",
+        startTime: "19:00",
+        endTime: "19:59",
+        timedTask: {
+            id: '09-taskSideQuest',
+            titleText: 'Side Quest Studies',
+            descriptiveText: 'Check your list of side quest list for skills to train',
+            experiencePoints: 100,
+        },
+        activeTime: false,
+        isUpdating: false
     },
     {
         id: "twentyfirst-hour-20-00-00-night",
@@ -297,8 +279,7 @@ export const hoursOfTheDays = [
             experiencePoints: 5,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "twentysecond-hour-21-00-00-night",
@@ -311,8 +292,7 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "twentythird-hour-22-00-00-night",
@@ -325,8 +305,7 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     },
     {
         id: "twentyfourth-hour-23-00-00-night",
@@ -339,7 +318,6 @@ export const hoursOfTheDays = [
             experiencePoints: 10,
         },
         activeTime: false,
-        isUpdating: false,
-        isRemoving: false
+        isUpdating: false
     }
 ]
