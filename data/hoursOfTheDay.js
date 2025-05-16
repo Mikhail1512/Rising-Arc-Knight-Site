@@ -20,7 +20,7 @@ export const hoursOfTheDays = [
         isUpdating: false
     }, 
     {
-        id: "second-hour-01/-00-00-morning",
+        id: "second-hour-01-00-00-morning",
         startTime: "01:00",
         endTime: "01:59",
         timedTask: {
@@ -320,4 +320,4 @@ export const hoursOfTheDays = [
         activeTime: false,
         isUpdating: false
     }
-]
+];

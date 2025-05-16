@@ -18,7 +18,7 @@ body{
 
 /* Main section  */
 main{
-    height: 900px;
+    height: 740px;
     width: 100%;
     background-color: #d5d2d2;
     display: flex;
@@ -27,6 +27,302 @@ main{
     position: relative;
 }
 
+/* Task Calender */
+
+.task-calender{
+    width: 740px;
+    height: 680px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.calender-header{
+    width: 700px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.calender-date{
+    width: 220px;
+    height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-buttons-container{
+    width: 96px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.previous-month-button{
+    background-color: #d5d2d2;
+    width: 40px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.next-month-button{
+    background-color: #d5d2d2;
+    width: 40px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+
+
+.calender-body{
+    width: 700px;
+    height: 560px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.days-of-the-week{
+    width: 700px;
+    height: 44px;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; */
+    display: grid;
+    grid-template-rows: 44px;
+    grid-template-columns: 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px;
+    font-size: 1.6rem;
+}
+
+.days-of-the-week span{
+    width: 92px;
+    height: 44px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.sunday-column{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.monday-column{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+.tuesday-column{
+    grid-column: 5/6;
+    grid-row: 1/2;
+}
+.wednesday-column{
+    grid-column: 7/8;
+    grid-row: 1/2;
+}
+.thursday-column{
+    grid-column: 9/10;
+    grid-row: 1/2;
+}
+.friday-column{
+    grid-column: 11/12;
+    grid-row: 1/2;
+}
+.saturday-column{
+    grid-column: 13/14;
+    grid-row: 1/2;
+}
+
+
+.date-card-container{
+    width: 700px;
+    height: 498px;
+    /* border: 1px solid black; */
+    display: grid;
+    grid-template-columns: 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px;
+    grid-template-rows: 92px 9.3px 92px 9.3px 92px 9.3px 92px 9.3px 92px;
+}
+
+.date-cards{
+    width: 92px;
+    height: 92px;
+    border: 1px solid black;
+
+}
+
+/* .date-card-1{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.date-card-2{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+.date-card-3{
+    grid-column: 5/6;
+    grid-row: 1/2;
+}
+.date-card-4{
+    grid-column: 7/8;
+    grid-row: 1/2;
+}
+.date-card-5{
+    grid-column: 9/10;
+    grid-row: 1/2;
+}
+.date-card-6{
+    grid-column: 11/12;
+    grid-row: 1/2;
+}
+.date-card-7{
+    grid-column: 13/14;
+    grid-row: 1/2;
+}
+
+
+.date-card-8{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.date-card-9{
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+.date-card-10{
+    grid-column: 5/6;
+    grid-row: 3/4;
+}
+.date-card-11{
+    grid-column: 7/8;
+    grid-row: 3/4;
+}
+.date-card-12{
+    grid-column: 9/10;
+    grid-row: 3/4;
+}
+.date-card-13{
+    grid-column: 11/12;
+    grid-row: 3/4;
+}
+.date-card-14{
+    grid-column: 13/14;
+    grid-row: 3/4;
+}
+
+
+.date-card-15{
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+.date-card-16{
+    grid-column: 3/4;
+    grid-row: 5/6;
+}
+.date-card-17{
+    grid-column: 5/6;
+    grid-row: 5/6;
+}
+.date-card-18{
+    grid-column: 7/8;
+    grid-row: 5/6;
+}
+.date-card-19{
+    grid-column: 9/10;
+    grid-row: 5/6;
+}
+.date-card-20{
+    grid-column: 11/12;
+    grid-row: 5/6;
+}
+.date-card-21{
+    grid-column: 13/14;
+    grid-row: 5/6;
+}
+
+
+.date-card-22{
+    grid-column: 1/2;
+    grid-row: 7/8;
+}
+.date-card-23{
+    grid-column: 3/4;
+    grid-row: 7/8;
+}
+.date-card-24{
+    grid-column: 5/6;
+    grid-row: 7/8;
+}
+.date-card-25{
+    grid-column: 7/8;
+    grid-row: 7/8;
+}
+.date-card-26{
+    grid-column: 9/10;
+    grid-row: 7/8;
+}
+.date-card-27{
+    grid-column: 11/12;
+    grid-row: 7/8;
+}
+.date-card-28{
+    grid-column: 13/14;
+    grid-row: 7/8;
+}
+
+
+.date-card-29{
+    grid-column: 1/2;
+    grid-row: 9/10;
+}
+.date-card-30{
+    grid-column: 3/4;
+    grid-row: 9/10;
+}
+.date-card-31{
+    grid-column: 5/6;
+    grid-row: 9/10;
+}
+.date-card-32{
+    grid-column: 7/8;
+    grid-row: 9/10;
+}
+.date-card-33{
+    grid-column: 9/10;
+    grid-row: 9/10;
+}
+.date-card-34{
+    grid-column: 11/12;
+    grid-row: 9/10;
+}
+.date-card-35{
+    grid-column: 13/14;
+    grid-row: 9/10;
+} */
+
+/* Daily schedule */
 .daily-schedule-table{
     height: 800px;
     width: 600px;

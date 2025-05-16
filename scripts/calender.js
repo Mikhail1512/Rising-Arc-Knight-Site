@@ -15,6 +15,7 @@
 
 import { generateHeader } from "./header.js";
 import { hoursOfTheDays } from "../data/hoursOfTheDay.js";
+import "../data/thisMonth42dayjs.js"
 
 
 document.querySelector('.js-calender-header').innerHTML = generateHeader();
@@ -131,3 +132,91 @@ function generateDailyTimeTable(){
 };
 
 // generateDailyTimeTable();
+
+document.querySelector('.js-date-card-container').innerHTML = generateDateCards();
+
+function generateDateCards() {
+    /*This is the improved version(cleaner code) Gemini sourced*/
+    let cardHTML = '';
+    const gridPosition = {
+        columnStart: 1,
+        columnEnd: 2,
+        rowStart: 1,
+        rowEnd: 2
+    };
+
+    for (let i = 0; i < 35; i++) {
+        cardHTML += `
+            <div class="date-cards"
+                 style="
+                     grid-column: ${gridPosition.columnStart}/${gridPosition.columnEnd};
+                     grid-row: ${gridPosition.rowStart}/${gridPosition.rowEnd};
+                 "
+            >
+                <span class="date-number"></span>
+                <div class="text"></div>
+            </div>
+        `;
+
+        if ((i + 1) % 7 === 0) {
+            gridPosition.rowStart += 2;
+            gridPosition.rowEnd += 2;
+            gridPosition.columnStart = 1;
+            gridPosition.columnEnd = 2;
+        } else {
+            gridPosition.columnStart += 2;
+            gridPosition.columnEnd += 2;
+        }
+    }
+
+    return cardHTML;
+}
+
+/*Version 1 base code (No assistant)*/
+/*function generateDateCards(){
+    let cardHTML = '';
+    let columnStart = 1; 
+    let columnEnd = 2;
+    let row = 1; 
+    let rowStart = 1;
+    let rowEnd = 2;
+
+    const gridPosition = {
+        row: 1,
+        columnStart: 1,
+        columnEnd: 2,
+        rowStart: 1,
+        rowEnd: 2
+    };
+
+    for (let i = 0; i < 35; i++) {   
+        cardHTML += `
+                    <div class="date-cards"
+                        style="    
+                            grid-column: ${gridPosition.columnStart}/${gridPosition.columnEnd};
+                            grid-row: ${gridPosition.rowStart}/${gridPosition.rowEnd};
+                        "
+                    >
+                        <span class="date-number"></span>
+                        <div class="text"></div>
+                    </div>
+        `;
+
+        if(gridPosition.columnStart < 13 && gridPosition.columnEnd < 14){
+            gridPosition.columnStart+=2;
+            gridPosition.columnEnd+=2;
+        }else{
+            gridPosition.columnStart = 1;
+            gridPosition.columnEnd =2;
+        };
+
+        if(i+1 === 7*gridPosition.row){
+            gridPosition.row+=1
+            gridPosition.rowStart+=2;
+            gridPosition.rowEnd+=2;
+        }
+        
+    }
+
+    return cardHTML;
+}*/
