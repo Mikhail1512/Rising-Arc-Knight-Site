@@ -15,36 +15,72 @@
 
 import { generateHeader } from "./header.js";
 import { hoursOfTheDays } from "../data/hoursOfTheDay.js";
-import "../data/thisMonth42dayjs.js"
+import { thisMonth } from "../data/thisMonth42dayjs.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 
 document.querySelector('.js-calender-header').innerHTML = generateHeader();
+
+const url = new URL(window.location.href);
+const loadUrlParams = url.searchParams.get('loadDailySch');
+const dateIdUrlParams = url.searchParams.get('dateId');
 
 function generateDailyTimeTable(){
 
     const calenderBodySection = document.querySelector('.js-main-section-body');
     let dailyTableHTML = '';
 
-    dailyTableHTML = `
-        <div class="daily-schedule-table">
-            <div class="daily-header-display">
-                <div>Time Table</div>
-                <div>
-                    <span>Sat - 29/03/2025</span>
+    thisMonth.forEach((selectDate) => {
+        if(selectDate.id === dateIdUrlParams){
+            dailyTableHTML = `
+                <button class="back-to-calender js-back-to-calender">Back</button>
+                <div class="daily-schedule-table">
+                    <div class="daily-header-display">
+                        <div>Time Table</div>
+                        <div>
+                            <span>${selectDate.shortDayString} - ${selectDate.dateString}/${selectDate.monthNumberString}/${selectDate.yearString}</span>
+                        </div>
+                    </div>
+                    <div class="daily-body-display">
+                        ${generateHourlySchedule(selectDate)}
+                    </div>
                 </div>
-            </div>
-            <div class="daily-body-display">
-                ${generateHourlySchedule()}
-            </div>
-        </div>
-    `;
+            `;
+        }
+    })
 
-    function generateHourlySchedule() {
+
+
+    function generateHourlySchedule(selectDate) {
         // const timeTableBody = document.querySelector('.daily-body-display');
-    
+        
+        const hourlyInfoObject = selectDate.hoursObject;
         let timeTableHTML = '';
+
+        hourlyInfoObject.forEach((hourlyInfo) => {
+            if(hourlyInfo.timedTask.titleText === ''){
+                hourlyInfo.timedTask.titleText = '- - -';
+            }
     
-        hoursOfTheDays.forEach((hourlyInfo) => {
+            timeTableHTML += `
+                <div class="time-table-hours"
+                    style="
+                        background-color: ${selectDate.isDateActive && hourlyInfo.activeTime? '#b7bdbf': '#d5d2d2'};
+                    "
+                >
+                    <div class="hourly-task-texts js-hour-task-text-${hourlyInfo.id}">${hourlyInfo.timedTask.titleText}</div>
+                    <div class="hours-body-display">
+                        <div class="js-hour-time-display">${hourlyInfo.startTime} - ${hourlyInfo.endTime}</div>
+                        <div class="hours-button-container">
+                            <button class="hours-update-button js-hour-update-button-${hourlyInfo.id}">Update</button>
+                            <button class="hours-clear-button js-hour-clear-button">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        /*hoursOfTheDays.forEach((hourlyInfo) => {
             if(hourlyInfo.timedTask.titleText === ''){
                 hourlyInfo.timedTask.titleText = '- - -';
             }
@@ -61,14 +97,28 @@ function generateDailyTimeTable(){
                     </div>
                 </div>
             `;
-        });
+        });*/
+        /*dailyTableHTML = `
+            <button class="back-to-calender js-back-to-calender">Back</button>
+            <div class="daily-schedule-table">
+                <div class="daily-header-display">
+                    <div>Time Table</div>
+                    <div>
+                        <span>${dayjs().format('ddd - DD/MM/YYYY')}</span>
+                    </div>
+                </div>
+                <div class="daily-body-display">
+                    ${generateHourlySchedule()}
+                </div>
+            </div>
+        `;*/
     
         // timeTableBody.innerHTML = timeTableHTML;
         return timeTableHTML;
     
     };
     
-    function updateTimedTasks(){
+    /*function updateTimedTasks(){
         hoursOfTheDays.forEach((hourlyInfo) => {
             document.querySelector(`.js-hour-update-button-${hourlyInfo.id}`).addEventListener('click',() => {
                 // hourlyInfo.timedTask.titleText = "Not Sleeping";
@@ -77,7 +127,7 @@ function generateDailyTimeTable(){
                 controlUpdateGeneration(hourlyInfo);
             });
         });
-    };
+    };*/
     
     function controlUpdateGeneration(hourlyInfo){
         const updateHTML = `
@@ -119,58 +169,146 @@ function generateDailyTimeTable(){
         
         document.querySelector('.cancel-update-button').addEventListener('click', () => {
             document.querySelector('.js-main-section-body').innerHTML = timeTableHTML;
-            updateTimedTasks();
+            // updateTimedTasks();
         });
     
     
     
     };
 
-    updateTimedTasks();
+    // updateTimedTasks();
     
     calenderBodySection.innerHTML =  dailyTableHTML;
 };
 
-// generateDailyTimeTable();
+function generatesTaskCalender(){
+    let calenderHTML = '';
 
-document.querySelector('.js-date-card-container').innerHTML = generateDateCards();
+    calenderHTML+=`
+        <div class="task-calender">
+            <div class="calender-header">
+                <!-- Generate Code -->
+                <div class="calender-date">${dayjs().format('YYYY MMMM DD')}</div>
+                <div class="control-buttons-container">
+                    <button class="previous-month-button">L</button>
+                    <button class="next-month-button">R</button>
+                </div>
+            </div>
+            <div class="calender-body">
+                <div class="days-of-the-week">
+                    <span class="sunday-column">Sun</span>
+                    <span class="monday-column">Mon</span>
+                    <span class="tuesday-column">Tues</span>
+                    <span class="wednesday-column">Wed</span>
+                    <span class="thursday-column">Thur</span>
+                    <span class="friday-column">Fri</span>
+                    <span class="saturday-column">Sat</span>
+                </div>
+                <div class="date-card-container js-date-card-container">
+                    ${generateDateCards()}
+                </div>
+            </div>
+        </div>
+    `
 
-function generateDateCards() {
-    /*This is the improved version(cleaner code) Gemini sourced*/
-    let cardHTML = '';
-    const gridPosition = {
-        columnStart: 1,
-        columnEnd: 2,
-        rowStart: 1,
-        rowEnd: 2
+    function generateDateCards() {
+        /*This is the improved version(cleaner code) Gemini sourced*/
+        let cardHTML = '';
+        const gridPosition = {
+            index: 0,
+            columnStart: 1,
+            columnEnd: 2,
+            rowStart: 1,
+            rowEnd: 2
+        };
+
+        thisMonth.forEach((date) => {
+
+            cardHTML += `
+                <div class="date-cards js-date-card-${date.id}"
+                    style="
+                        grid-column: ${gridPosition.columnStart}/${gridPosition.columnEnd};
+                        grid-row: ${gridPosition.rowStart}/${gridPosition.rowEnd};
+                        opacity: ${date.isMonthActive? '100%':'50%'};
+                        background-color: ${date.isDateActive? '#b7bdbf': '#d5d2d2'};
+                    "
+                >
+                    <div class="date-number">${date.dateString}</div>
+                    <div class="date-text">${date.dailyEvents}</div>
+                </div>
+            `;
+
+            if ((gridPosition.index + 1) % 7 === 0) {
+                gridPosition.rowStart += 2;
+                gridPosition.rowEnd += 2;
+                gridPosition.columnStart = 1;
+                gridPosition.columnEnd = 2;
+            } else {
+                gridPosition.columnStart += 2;
+                gridPosition.columnEnd += 2;
+            }
+
+            gridPosition.index += 1;
+
+            /*if(gridPosition.index < 5){
+                console.log(date);
+                console.log(thisMonth.length)
+            }*/
+        });
+
+        /*for (let i = 0; i < 42; i++) {
+            cardHTML += `
+                <div class="date-cards"
+                    style="
+                        grid-column: ${gridPosition.columnStart}/${gridPosition.columnEnd};
+                        grid-row: ${gridPosition.rowStart}/${gridPosition.rowEnd};
+                    "
+                >
+                    <span class="date-number"></span>
+                    <div class="text"></div>
+                </div>
+            `;
+
+            if ((i + 1) % 7 === 0) {
+                gridPosition.rowStart += 2;
+                gridPosition.rowEnd += 2;
+                gridPosition.columnStart = 1;
+                gridPosition.columnEnd = 2;
+            } else {
+                gridPosition.columnStart += 2;
+                gridPosition.columnEnd += 2;
+            }
+        }*/
+
+        return cardHTML;
     };
 
-    for (let i = 0; i < 35; i++) {
-        cardHTML += `
-            <div class="date-cards"
-                 style="
-                     grid-column: ${gridPosition.columnStart}/${gridPosition.columnEnd};
-                     grid-row: ${gridPosition.rowStart}/${gridPosition.rowEnd};
-                 "
-            >
-                <span class="date-number"></span>
-                <div class="text"></div>
-            </div>
-        `;
+    document.querySelector('.js-main-section-body').innerHTML = calenderHTML;
+};
 
-        if ((i + 1) % 7 === 0) {
-            gridPosition.rowStart += 2;
-            gridPosition.rowEnd += 2;
-            gridPosition.columnStart = 1;
-            gridPosition.columnEnd = 2;
-        } else {
-            gridPosition.columnStart += 2;
-            gridPosition.columnEnd += 2;
-        }
+function toggleCalenderSchedule(){
+
+    if(loadUrlParams){
+        generateDailyTimeTable();
+        document.querySelector('.js-back-to-calender').addEventListener('click', () => {
+            window.location.href = 'calender.html';
+        });
+    }else{
+        generatesTaskCalender();
+        thisMonth.forEach((date) => {
+            document.querySelector(`.js-date-card-${date.id}`).addEventListener('dblclick', () => {
+            window.location.href = `calender.html?dateId=${date.id}&loadDailySch=${true}`;
+        });
+    });
     }
 
-    return cardHTML;
-}
+
+};
+
+toggleCalenderSchedule();
+
+console.log(thisMonth);
+
 
 /*Version 1 base code (No assistant)*/
 /*function generateDateCards(){
