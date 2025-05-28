@@ -14,8 +14,7 @@
 */
 
 import { generateHeader } from "./header.js";
-import { hoursOfTheDays } from "../data/hoursOfTheDay.js";
-import { thisMonth } from "../data/thisMonth42dayjs.js";
+import { thisMonth } from "../data/calendar-data/thisMonth42dayjs.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 
@@ -25,13 +24,17 @@ const url = new URL(window.location.href);
 const loadUrlParams = url.searchParams.get('loadDailySch');
 const dateIdUrlParams = url.searchParams.get('dateId');
 
-function generateDailyTimeTable(){
 
+
+function generateDailyTimeTable(){
     const calenderBodySection = document.querySelector('.js-main-section-body');
+    // let selectedDate;
     let dailyTableHTML = '';
 
     thisMonth.forEach((selectDate) => {
         if(selectDate.id === dateIdUrlParams){
+            // selectedDate = structuredClone(dateObject);
+
             dailyTableHTML = `
                 <button class="back-to-calender js-back-to-calender">Back</button>
                 <div class="daily-schedule-table">
@@ -46,8 +49,23 @@ function generateDailyTimeTable(){
                     </div>
                 </div>
             `;
-        }
-    })
+        };
+    });
+
+    // dailyTableHTML = `
+    // <button class="back-to-calender js-back-to-calender">Back</button>
+    // <div class="daily-schedule-table">
+    //     <div class="daily-header-display">
+    //         <div>Time Table</div>
+    //         <div>
+    //             <span>${selectedDate.shortDayString} - ${selectedDate.dateString}/${selectedDate.monthNumberString}/${selectedDate.yearString}</span>
+    //         </div>
+    //     </div>
+    //     <div class="daily-body-display">
+    //         ${generateHourlySchedule(selectedDate)}
+    //     </div>
+    // </div>
+    // `;
 
 
 
@@ -78,6 +96,7 @@ function generateDailyTimeTable(){
                     </div>
                 </div>
             `;
+
         });
 
         /*hoursOfTheDays.forEach((hourlyInfo) => {
@@ -117,19 +136,79 @@ function generateDailyTimeTable(){
         return timeTableHTML;
     
     };
-    
-    /*function updateTimedTasks(){
-        hoursOfTheDays.forEach((hourlyInfo) => {
-            document.querySelector(`.js-hour-update-button-${hourlyInfo.id}`).addEventListener('click',() => {
-                // hourlyInfo.timedTask.titleText = "Not Sleeping";
-                // console.log(hourlyInfo.timedTask.titleText);
-                // document.querySelector(`.js-hour-task-text-${hourlyInfo.id}`).innerHTML = hourlyInfo.timedTask.titleText;
-                controlUpdateGeneration(hourlyInfo);
-            });
+
+    function controlEventUpdate(){
+
+        thisMonth.forEach((selectDate) => {
+            if(selectDate.id === dateIdUrlParams){
+                const hourlyInfoObject = selectDate.hoursObject;
+
+                hourlyInfoObject.forEach((hourlyInfo) => {
+                    document.querySelector(`.js-hour-update-button-${hourlyInfo.id}`).addEventListener('click', () => {
+                        const timeTableHTML = document.querySelector('.js-main-section-body');                
+                        let updateHTML = '';
+                
+                        updateHTML = `
+                            <div class="info-update-container">
+                                <div class="info-update-card">
+                                    <div class="update-card-header">
+                                        <span>Enter new task and confirm</span>
+                                        <span>⚙️</span>
+                                    </div>
+                                    <div class="title-input-container">
+                                        <label>Task Title:</label>
+                                        <input type="text" class="update-title-input js-update-title-input" value="${hourlyInfo.timedTask.titleText}">
+                                    </div>
+                                    <div class="description-container">
+                                        <label>Task Description:</label>
+                                        <input class="update-description-input js-update-description-input" value="${hourlyInfo.timedTask.descriptiveText}">
+                                    </div>
+                                    <div class="Id-Exp-storage">
+                                        <div class="id-container">
+                                            <label>Id:</label>
+                                            <input type="text" class="update-id-input js-update-id-input" value="${hourlyInfo.timedTask.id}">
+                                        </div>
+                                        <div class="exp-container">
+                                            <label>Exp:</label>
+                                            <input type="number" class="update-exp-input js-update-exp-input" value="${hourlyInfo.timedTask.experiencePoints}">
+                                        </div>
+                                    </div>
+                                    <div class="update-button-container">
+                                        <button class="confirm-update-button">Confirm</button>
+                                        <button class="cancel-update-button">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        timeTableHTML.innerHTML = updateHTML;
+
+                        document.querySelector(`.cancel-update-button`).addEventListener('click', () => {
+                            generateDailyTimeTable();
+                        });
+
+                        document.querySelector(`.confirm-update-button`).addEventListener('click', () => {
+                            const textInput = document.querySelector(`.js-update-title-input`);
+                            const descriptionInput = document.querySelector('.js-update-description-input');
+                            const idInput = document.querySelector('.js-update-id-input');
+                            const expInput = document.querySelector('.js-update-exp-input');
+
+                            hourlyInfo.timedTask.titleText = textInput.value;
+                            hourlyInfo.timedTask.descriptiveText = descriptionInput.value;
+                            hourlyInfo.timedTask.id = idInput.value;
+                            hourlyInfo.timedTask.experiencePoints = expInput.value;
+
+                            localStorage.setItem('thisMonth', JSON.stringify(thisMonth));
+                        });
+                    });
+                });
+            };
         });
-    };*/
+    };
     
-    function controlUpdateGeneration(hourlyInfo){
+
+
+    /*function controlUpdateGeneration(hourlyInfo){
         const updateHTML = `
             <div class="info-update-container">
                 <div class="info-update-card">
@@ -172,13 +251,11 @@ function generateDailyTimeTable(){
             // updateTimedTasks();
         });
     
-    
-    
-    };
-
-    // updateTimedTasks();
+    };*/
     
     calenderBodySection.innerHTML =  dailyTableHTML;
+    console.log(thisMonth);
+    controlEventUpdate();
 };
 
 function generatesTaskCalender(){
@@ -307,7 +384,82 @@ function toggleCalenderSchedule(){
 
 toggleCalenderSchedule();
 
-console.log(thisMonth);
+
+
+function controlEventUpdate(){
+
+    thisMonth.forEach((selectDate) => {
+        const hourlyInfoObject = selectDate.hoursObject
+        if(selectDate.id === dateIdUrlParams){
+            hourlyInfoObject.forEach((hourlyInfo) => {
+                document.querySelector(`.js-hour-update-button-${hourlyInfo.id}`).addEventListener('click', () => {
+                    const timeTableHTML = document.querySelector('.js-main-section-body');
+                    let updateHTML = '';
+            
+                    updateHTML = `
+                        <div class="info-update-container">
+                            <div class="info-update-card">
+                                <div class="update-card-header">
+                                    <span>Enter new task and confirm</span>
+                                    <span>⚙️</span>
+                                </div>
+                                <div class="title-input-container">
+                                    <label>Task Title:</label>
+                                    <input type="text" class="update-title-input js-update-title-input-${selectDate.id}" value="${hourlyInfo.timedTask.titleText}">
+                                </div>
+                                <div class="description-container">
+                                    <label>Task Description:</label>
+                                    <input class="update-description-input js-update-description-input" value="${hourlyInfo.timedTask.descriptiveText}">
+                                </div>
+                                <div class="Id-Exp-storage">
+                                    <div class="id-container">
+                                        <label>Id:</label>
+                                        <input type="text" class="update-id-input js-update-id-input" value="${hourlyInfo.timedTask.id}">
+                                    </div>
+                                    <div class="exp-container">
+                                        <label>Exp:</label>
+                                        <input type="number" class="update-exp-input js-update-exp-input" value="${hourlyInfo.timedTask.experiencePoints}">
+                                    </div>
+                                </div>
+                                <div class="update-button-container">
+                                    <button class="confirm-update-button">Confirm</button>
+                                    <button class="cancel-update-button">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    timeTableHTML.innerHTML=updateHTML;
+
+                    document.querySelector(`.cancel-update-button`).addEventListener('click', () => {
+                        generateDailyTimeTable();    
+                    });
+
+                    document.querySelector(`.confirm-update-button`).addEventListener('click', () => {
+                        const textInput = document.querySelector(`.js-update-title-input-${selectDate.id}`);
+                        const descriptionInput = document.querySelector('.js-update-description-input');
+                        const idInput = document.querySelector('.js-update-id-input');
+                        const expInput = document.querySelector('.js-update-exp-input');
+                        console.log(hourlyInfo.timedTask);
+                        console.log(`.js-update-title-input-${selectDate.id}`===`.js-update-title-input-${dateIdUrlParams}`)
+                        hourlyInfo.timedTask.titleText = textInput.value;
+                        hourlyInfo.timedTask.descriptiveText = descriptionInput.value;
+                        hourlyInfo.timedTask.id = idInput.value;
+                        hourlyInfo.timedTask.experiencePoints = expInput.value;
+                        console.log(hourlyInfo.timedTask);
+                        console.log(thisMonth);
+                        // localStorage.setItem('thisMonth', JSON.stringify(thisMonth));
+                        // console.log(JSON.parse(localStorage.getItem('thisMonth')));
+                    });
+                    
+                });
+            });
+        };
+    });
+}
+
+// controlEventUpdate();
+
 
 
 /*Version 1 base code (No assistant)*/
