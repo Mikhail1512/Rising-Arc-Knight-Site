@@ -5,6 +5,7 @@ export function generateHeader(){
             <div class="inner-header-container">
                 <div><a href="index.html">Home</a></div>
                 <div><a href="calender.html">Calender</a></div>
+                <div><a href="quest.html">Quests</a></div>
             </div>
         </div>
         <div class="lower-header">

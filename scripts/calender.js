@@ -307,7 +307,7 @@ function generatesTaskCalender(){
                         grid-column: ${gridPosition.columnStart}/${gridPosition.columnEnd};
                         grid-row: ${gridPosition.rowStart}/${gridPosition.rowEnd};
                         opacity: ${date.isMonthActive? '100%':'50%'};
-                        background-color: ${date.isDateActive? '#b7bdbf': '#d5d2d2'};
+                        background-color: ${date.isDateActive && `${date.dateString}/${date.monthNumberString}` === dayjs().format('DD/MM')? '#b7bdbf': '#d5d2d2'};
                     "
                 >
                     <div class="date-number">${date.dateString}</div>
