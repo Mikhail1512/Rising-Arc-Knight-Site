@@ -1,7 +1,7 @@
 export const errandsList = [
     {
         questId:'03-errands-get your-passport',
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Fetch Quest',
         questTitle: 'Go get your passport',
         questDetails:'Go to the munciple office to create a passport so you can apply for oversea jobs',
@@ -50,7 +50,7 @@ export const errandsList = [
     },
     {
         questId:"03-errands-make-new-vitae's",
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Create documents',
         questTitle: "Make three new CVs",
         questDetails:'Make three CVs with different styles so you can send them to the appropriate job openings.',
@@ -101,7 +101,7 @@ export const errandsList = [
     },
     {
         questId:'03-errands-get-manual-car',
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Fetch Quest',
         questTitle: 'Get the test Vehicle',
         questDetails:'Get a manual car to use for the day you take your drivers test, also make sure you are comfortable driving the car.',
@@ -151,7 +151,7 @@ export const errandsList = [
     },
     {
         questId:'03-errands-repair-your-bicycle',
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Maintain and repair',
         questTitle: 'Repair your Bicycle',
         questDetails:'Fix up your bicycle so you can ride it in the morning and go and read book by the ocean before start working.',
@@ -200,7 +200,7 @@ export const errandsList = [
     },
     {
         questId:'03-errands-organize-your-room',
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Clean and Organise',
         questTitle: 'Organize your room',
         questDetails:'Organise your room so it neat and easy to find things, also so if someone opens your cupboard you can chill.',

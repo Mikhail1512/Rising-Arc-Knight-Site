@@ -1,7 +1,7 @@
 export const activeQuests = [
     {
         questId:'01-main-create-quest-page',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Web Learning',
         questTitle: 'Create the Quest Page',
         questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',
@@ -50,7 +50,7 @@ export const activeQuests = [
     },
     {
         questId:'01-main-go-job-hunting',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Job Hunting',
         questTitle: 'Find a suitable Job',
         questDetails:'Find a job that meets your requirements and figure out how to meets theirs. This will allow a major amount of requirements from others quests to be met.',
@@ -99,7 +99,7 @@ export const activeQuests = [
     },
     {
         questId:'02-side-learn-sprite-creation',
-        questType: 'Side',
+        questType: 'side',
         questCategory: 'Web Learning',
         questTitle: 'Learn to create sprites',
         questDetails:'Practice making sprites and tileset in Aseprites for video game animations. Pratice draw these animations as well.',
@@ -149,7 +149,7 @@ export const activeQuests = [
     },
     {
         questId:'03-errands-get your-passport',
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Fetch Quest',
         questTitle: 'Go get your passport',
         questDetails:'Go to the munciple office to create a passport so you can apply for oversea jobs',
@@ -198,7 +198,7 @@ export const activeQuests = [
     },
     {
         questId:"03-errands-make-new-vitae's",
-        questType: 'Errands',
+        questType: 'errand',
         questCategory: 'Create documents',
         questTitle: "Make three new CVs",
         questDetails:'Make three CVs with different styles so you can send them to the appropriate job openings.',

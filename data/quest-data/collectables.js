@@ -1,7 +1,7 @@
 export const collectablesList = [
     {
         questId:'04-collectable-code-8-license',
-        questType: 'Collectable',
+        questType: 'collectable',
         questCategory: 'Item Collection',
         questTitle: 'Code 8 License',
         questDetails:'When you pass your drivers test you get your eight license this will allow you to do many new things. Applying for job requiring the license and cross country travel.',
@@ -48,7 +48,7 @@ export const collectablesList = [
     },
     {
         questId:'04-collectable-kawasaki-motorcycle',
-        questType: 'Collectable',
+        questType: 'collectable',
         questCategory: 'Vehicle Collection',
         questTitle: 'Kawasaki Motorcycle',
         questDetails:'Getting motorcycle will be real sweet. I can use it to drive locally and to different city. I can use it to increase distance of work commute.',
@@ -95,7 +95,7 @@ export const collectablesList = [
     },
     {
         questId:'04-collectable-code-programming-cerificate',
-        questType: 'Collectable',
+        questType: 'collectable',
         questCategory: 'Document Collection',
         questTitle: 'Programming Certificate',
         questDetails:'Get your programming certificate to add some extra credits. It will allow you potential get better jobs.',
@@ -142,7 +142,7 @@ export const collectablesList = [
     },
     {
         questId:'04-collectable-iron-hatchet',
-        questType: 'Collectable',
+        questType: 'collectable',
         questCategory: 'Tool Collection',
         questTitle: 'Iron Hatchet',
         questDetails:'Getting one of these is going to be awesome. It will allow me to debark trees, maybe planks and so much more. You could even make a basic bow.',
@@ -189,7 +189,7 @@ export const collectablesList = [
     },
     {
         questId:'04-collectable-30kg-dumbell-set',
-        questType: 'Collectable',
+        questType: 'collectable',
         questCategory: 'Gym Collection',
         questTitle: '30kg Dumbell set',
         questDetails:'Will make working out so much better. It will allow me to do more type of exercise to better target my muscles.',

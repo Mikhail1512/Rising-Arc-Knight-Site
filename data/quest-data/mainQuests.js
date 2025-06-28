@@ -1,7 +1,7 @@
 export const mainQuests = [
     {
         questId:'01-main-create-quest-page',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Web Learning',
         questTitle: 'Create the Quest Page',
         questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',
@@ -50,7 +50,7 @@ export const mainQuests = [
     },
     {
         questId:'01-main-go-job-hunting',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Job Hunting',
         questTitle: 'Find a suitable Job',
         questDetails:'Find a job that meets your requirements and figure out how to meets theirs. This will allow a major amount of requirements from others quests to be met.',
@@ -99,7 +99,7 @@ export const mainQuests = [
     },
     {
         questId:'01-main-complete-your-studies',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Tech Learning',
         questTitle: 'Complete Your Studies',
         questDetails:'Learn how to work with technology to repair, build and improve technology you own. Create fun and use things that could serve a purpose.',
@@ -150,7 +150,7 @@ export const mainQuests = [
     },
     {
         questId:'01-main-become-a-hafez',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Religious learning',
         questTitle: 'Become a Hafez',
         questDetails:'Learn to read and memorise the Quran. Try to practice and evening teach it. Remember you can consult deen buddy.',
@@ -200,7 +200,7 @@ export const mainQuests = [
     },
     {
         questId:'01-main-create-first-game',
-        questType: 'Main',
+        questType: 'main',
         questCategory: 'Web Learning',
         questTitle: 'Create you first Game',
         questDetails:'Create a game in godot become famliar with the tool and programming language around using Godot and preparing assets.',
@@ -256,7 +256,7 @@ export const mainQuests = [
     This is the refined base template with default info 
         {
             questId:'',
-            questType: 'Main',
+            questType: 'main',
             questCategory: 'Web Learning',
             questTitle: 'Create the Quest Page',
             questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',

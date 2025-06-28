@@ -13,6 +13,9 @@ import { sideQuests } from "../data/quest-data/sideQuests.js";
 import { errandsList } from "../data/quest-data/errands.js";
 import { collectablesList } from "../data/quest-data/collectables.js";
 
+const url = new URL(window.location.href);
+const creationUrlParams = url.searchParams.get('creatingNewQuest');
+
 let questArray = mainQuests;
 let toggleQuestView = false;
 
@@ -32,7 +35,7 @@ function generateQuestLog(objectItem){
                     <div class="quest-menu-title js-quest-menu-title"><i class="fa-solid fa-bars"></i></div>
                     <div class="quest-type-title-container">
                         <div class="quest-type-title">Active Quests</div>
-                        <div class="add-quest-link">Create</div>
+                        <div class="add-quest-button js-add-quest-button">Create</div>
                     </div>
                 </div>
                 <div class="quest-type-menu-body">      
@@ -142,7 +145,7 @@ function generateQuestLog(objectItem){
                     <div class="quest-menu-title js-quest-menu-title">Quest Menu</div>
                     <div class="quest-type-title-container">
                         <div class="quest-type-title">Active Quests</div>
-                        <div class="add-quest-link">Create</div>
+                        <div class="add-quest-button js-add-quest-button">Create</div>
                     </div>
                 </div>
                 <div class="quest-type-menu-body">      
@@ -305,7 +308,7 @@ function generateQuestLog(objectItem){
             <div class="quest-desription-display">
                 <div class="quest-description-header">
                     <div class="description-title">${objectItem.questTitle}</div>
-                    <div class="active-quest-button">Add</div>
+                    <div class="active-quest-button js-active-quest-button">Add</div>
                 </div>
                 <div class="quest-description-body">
                     ${objectItem.questDetails}
@@ -331,6 +334,21 @@ function generateQuestLog(objectItem){
         `;
         
         document.querySelector('.js-quest-description-section').innerHTML= detailHTML;
+        document.querySelector('.js-active-quest-button').addEventListener('click', () => {
+            let newItem = true;
+            activeQuests.forEach((activeQuest) => {
+                if(activeQuest.questId === objectItem.questId){
+                    newItem = false;
+                }
+            });
+            if(newItem){
+                objectItem.isActive = true;
+                activeQuests.push(objectItem);
+                console.log(activeQuests);
+            }else{
+                console.log('Quest is already active');
+            };
+        });
         toggleActiveObjective(objectiveList);
     };
 
@@ -404,26 +422,270 @@ function generateQuestLog(objectItem){
 };
 
 function generateQuestCreator(){
-    /*
+    const questPageBody = document.querySelector('.js-quests-body-main');
+    let questTypeSelected = mainQuests;
+    let createHTML = '';
+
+    createHTML = `
         <div class="quest-creator">
             <div class="creator-header">
                 <div class="quest-creator-title">Create Quests</div>
-                <div class="quest-links">
-                    <div class="main-quest-link">M</div>
-                    <div class="side-quest-link">S</div>
-                    <div class="errands-link">E</div>
+                <div class="create-button-container">
+                    <select id="questTypeSelector" class="quest-type-selector js-quest-type-selector">
+                        <option value="main">Main Quest</option>
+                        <option value="side">Side Quest</option>
+                        <option value="errand">Errands</option>
+                        <option value="collectable">Collectables</option>
+                    </select>
+                    <button class="cancel-creation-button">Cancel</button>
+                    <button class="create-quest-button js-create-quest-button">Create</button>
                 </div>
             </div>
-            <div class="creator-body"></div>
+            <div class="creator-body">
+                <div class="quest-creator-section-A">
+                    <div class="quest-text-container js-quests-id-container">
+                        <label for="questIdInput">Quest Id:</label>
+                        <input type="text" id="questIdInput" class="js-quest-id-input" placeholder="create-new-quest">
+                    </div>
+                    <div class="quest-text-container">
+                        <label for="questTextInput">Quest Title:</label>
+                        <input type="text" id="questTextInput" class="quest-title-input js-quest-title-input" placeholder="Enter Quest Name">
+                    </div>
+                    <div class="quest-text-container">
+                        <label for="questCategoryInput">Quest Category:</label>
+                        <input type="text" id="questCategoryInput" class="quest-category-input js-quest-category-input" placeholder="Enter Quest Category">
+                    </div>
+                </div>
+                <div class="quest-creator-section-B">
+                    <div class="quest-details-container">
+                        <label for="questDetailInput">Quest Details:</label>
+                        <textarea id="questDetailInput" class="quest-details-input js-quest-details-input" placeholder="Enter a short quest description. Explain the plan alittle bit."></textarea>
+                    </div>
+                    <div class="quest-checkbox-container">
+                        <div class="quest-requirements-container">
+                            <label for="questRequirementCheck">Requirements checked:</label>
+                            <input type="checkbox" id="questRequirementCheck" class="quest-checkbox-input js-quest-requirements-checkbox" checked>
+                        </div>  
+                        <div class="quest-active-container">
+                            <label for="questActiveCheck">Activate Quest:</label>
+                            <input type="checkbox" id="questActiveCheck" class="quest-checkbox-input js-quest-activate-input">
+                        </div>  
+                    </div>
+                </div>
+                <div class="quest-creator-section-C">
+                    <div class="quest-experience-container">
+                        <label for="questExperienceInput">Experience:</label>
+                        <input type="number" id="questExperienceInput" class="quest-experience-input js-quest-experience-input" placeholder="120">
+                    </div>
+
+                    <div class="quest-rank-container">
+                        <label for="questRankSelector">Select Rank:</label>
+                        <select name="QuestRanks" id="questRankSelector" class="rank-selector js-quest-rank-selector">
+                            <option value="S">S</option>
+                            <option value="A+">A+</option>
+                            <option value="A">A</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B">B</option>
+                            <option value="B-">B-</option>
+                            <option value="C+">C+</option>
+                            <option value="C" selected>C</option>
+                            <option value="C-">C-</option>
+                            <option value="D+">D+</option>
+                            <option value="D">D</option>
+                            <option value="D-">D-</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+
+                    <div class="quest-keywords-container">
+                        <label for="questKeywordInput">Add Keywords:</label>
+                        <div class="input-button-container">
+                            <input type="text" id="questKeywordInput" class="quest-keyword-input js-quest-keyword-input" placeholder="keyword">
+                            <button class="add-keyword-button js-add-keyword-button">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="quest-creator-section-D">
+                    <div class="quest-requirements-list-container">
+                        <label for="questRequirementListInput">Quest Requirements:</label>
+                        <input type="text" id="questRequirementListInput" class="quest-requirements-list-input js-quest-requirements-list-input" placeholder="Enter The Reuirements List">
+                    </div>
+                    <div class="quest-objectives-container">
+                        <label for="questObjectivesInput">Add Objective:</label>
+                        <input type="text" id="questObjectivesInput" class="quest-objective-input js-quest-objective-input" placeholder="Enter New Objective">
+                        <button class="add-object-button js-add-objective-button">Add</button>
+                    </div>
+                    <div class="image-selector-container">
+                        <label for="questImageSelector">Quest Image:</label>
+                        <select id="questImageSelector" class="quest-image-selector js-quest-image-selector">
+                            <option value="pending" default>Select from availiable options</option>
+                        </select>
+                    </div>
+                    <div class="briefing-selector-container">
+                        <label for="questBriefingSelector">Quest Briefing:</label>
+                        <select id="questBriefingSelector" class="quest-briefing-selector js-quest-briefing-selector">
+                            <option value="pending" default>Select from availiable options</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-    */
+    `;
+
+    questPageBody.innerHTML = createHTML;
+    createNewObject();
+
+
+    function createNewObject(){
+        const tempQuestObject = {
+            questId:'',
+            questType: 'main',
+            questCategory: '',
+            questTitle: '',
+            questDetails:'',
+            questProgress: 0,
+            questExperience: 0,
+            questRank: 'C',
+            questImage: 'Pending',
+            questRequirements: 'Laptop and time',
+            questObjectives:[
+ 
+            ],
+            questKeywords: [
+
+            ],
+            briefingLink: 'Pending',
+            isComplete: false,
+            isActive: false,
+            requirementsChecked: true
+        };
+
+        let idTypeText = '';
+
+        const inputIdElement = document.querySelector('.js-quest-id-input');
+        const questTypeInput = document.querySelector('.js-quest-type-selector');
+        const questTitleInput = document.querySelector('.js-quest-title-input');
+        const questCategoryInput = document.querySelector('.js-quest-category-input');
+        const questDetailsInput = document.querySelector('.js-quest-details-input');
+        const questRequirementsCheckbox = document.querySelector('.js-quest-requirements-checkbox');
+        const questActivateInput = document.querySelector('.js-quest-activate-input');
+        const questExperienceInput = document.querySelector('.js-quest-experience-input');
+        const questRankInput = document.querySelector('.js-quest-rank-selector');
+        const questRequirementsListInput = document.querySelector('.js-quest-requirements-list-input');
+        const questImageInput = document.querySelector('.js-quest-image-selector');
+        const questBriefingInput = document.querySelector('.js-quest-briefing-selector');
+
+        questTypeInput.addEventListener('click', () => {
+            handleTypeIdText();
+            if(questTypeInput.value === 'main'){
+                questTypeSelected = mainQuests;
+            }else if(questTypeInput.value === 'side'){
+                questTypeSelected = sideQuests;
+            }else if(questTypeInput.value === 'errand'){
+                questTypeSelected = errandsList;
+            }else if(questTypeInput.value === 'collectable'){
+                questTypeSelected = collectablesList;
+            }
+        });
+        handleTypeIdText();
+
+        function handleTypeIdText(){
+            if(questTypeInput.value === 'main'){
+                idTypeText = `01-${questTypeInput.value}`
+            }else if(questTypeInput.value === 'side'){
+                idTypeText = `02-${questTypeInput.value}`
+            }else if(questTypeInput.value === 'errand'){
+                idTypeText = `03-${questTypeInput.value}`
+            }else if(questTypeInput.value === 'collectable'){
+                idTypeText = `04-${questTypeInput.value}`
+            }
+        };        
+
+        document.querySelector('.js-add-keyword-button').addEventListener('click', () => {
+            tempQuestObject.questKeywords.push(String(document.querySelector('.js-quest-keyword-input').value));
+            document.querySelector('.js-quest-keyword-input').value = '';
+        });
+       
+        document.querySelector('.js-add-objective-button').addEventListener('click', () => {
+            if(inputIdElement.value !== ''){
+                const questTypeString = String(document.querySelector('.js-quest-type-selector').value);           
+                const objectiveArray = tempQuestObject.questObjectives;
+                const tempObjective = {
+                    objectivesId:`${idTypeText}-${inputIdElement.value}-${handleObjectiveCount()}-objective`,
+                    objectivesTitle:'',
+                    completed: false
+                }
+
+                function handleObjectiveCount(){
+                    let count = 'first';
+
+                    if(tempQuestObject.questObjectives.length === 1){
+                        count = 'second';
+                    }else if(tempQuestObject.questObjectives.length === 2){
+                        count = 'third';
+                    }else if(tempQuestObject.questObjectives.length === 3){
+                        count = 'fourth';
+                    }else if(tempQuestObject.questObjectives.length === 4){
+                        count = 'fifth';
+                    }else if(tempQuestObject.questObjectives.length === 4){
+                        count = 'sixth';
+                    }
+
+                    return count;
+                };
+
+                tempObjective.objectivesTitle = String(document.querySelector('.js-quest-objective-input').value);
+                objectiveArray.push(structuredClone(tempObjective));
+                document.querySelector('.js-quest-objective-input').value = '';
+            }
+        });
+        
+        document.querySelector('.js-create-quest-button').addEventListener('click', () => {
+            tempQuestObject.questId = `${idTypeText}-${inputIdElement.value}`;
+            tempQuestObject.questType = questTypeInput.value;
+            tempQuestObject.questTitle = questTitleInput.value;
+            tempQuestObject.questCategory = questCategoryInput.value;
+            tempQuestObject.questDetails = questDetailsInput.value;
+            tempQuestObject.requirementsChecked = questRequirementsCheckbox.checked;
+            tempQuestObject.isActive = questActivateInput.checked;
+            tempQuestObject.questExperience = questExperienceInput.value;
+            tempQuestObject.questRank = questRankInput.value;
+            tempQuestObject.questRequirements = questRequirementsListInput.value;
+            tempQuestObject.questImage = questImageInput.value;
+            tempQuestObject.briefingLink = questBriefingInput.value;
+            
+            console.log(tempQuestObject.questKeywords);
+            console.log(tempQuestObject.questObjectives);
+            console.log(tempQuestObject);
+            questTypeSelected.push(structuredClone(tempQuestObject));
+            console.log(questTypeSelected);
+
+            // localStorage.setItem(`${selectedQuestType}`, questTypeSelected);
+
+            inputIdElement.value = '';
+            questTitleInput.value = '';
+            questCategoryInput.value = '';
+            questDetailsInput.value = '';
+            questRequirementsCheckbox.checked = true;
+            questActivateInput.checked = false;
+            questExperienceInput.value = '';
+            questRequirementsListInput.value = '';
+        });
+
+
+    };
 };
 
 function controlQuestPage(){
     let loadState = false;
 
-    if(false){
+    if(creationUrlParams){
         generateQuestCreator();
+        document.querySelector('.cancel-creation-button').addEventListener('click', () => {
+            window.location.href = `quest.html`;
+        });
     }else{
         questArray.forEach((thisObject) => {
 
@@ -443,51 +705,73 @@ function controlQuestPage(){
                 toggleQuestView = false;
                 generateQuestLog(thisObject);
                 controlQuestPage();
+                toggleActiveState();
             });
             document.querySelector('.js-active-quests-selection').addEventListener('click', () => {
                 toggleQuestView = false;
                 questArray = activeQuests;
                 generateQuestLog(thisObject);
                 controlQuestPage();
+                toggleActiveState();
             });
             document.querySelector('.main-quests-selection').addEventListener('click', () => {
                 toggleQuestView = false;
                 questArray = mainQuests;
                 generateQuestLog(thisObject);
                 controlQuestPage();
+                toggleActiveState();
             });
             document.querySelector('.js-side-quests-selection').addEventListener('click', () => {
                 toggleQuestView = false;
                 questArray = sideQuests;
                 generateQuestLog(thisObject);
                 controlQuestPage();
+                toggleActiveState();
             });
             document.querySelector('.js-errands-selection').addEventListener('click', () => {
                 toggleQuestView = false;
                 questArray = errandsList;
                 generateQuestLog(thisObject);
                 controlQuestPage();
+                toggleActiveState();
             });
             document.querySelector('.js-collectables-selection').addEventListener('click', () => {
                 toggleQuestView = false;
                 questArray = collectablesList;
                 generateQuestLog(thisObject);
                 controlQuestPage();
+                toggleActiveState();
+            });
+            document.querySelector('.js-add-quest-button').addEventListener('click', () => {
+                window.location.href = `quest.html?creatingNewQuest=${true}`;
             });
 
         });
+        toggleActiveState();
     };
 };
 
 function toggleActiveState(){
     questArray.forEach((thisObject) => {
         document.querySelector(`.js-quest-cards-${thisObject.questId}`).addEventListener('dblclick',() => {
-            designActiveObject();
+            designActiveObject(thisObject);
         });
     });
 
-    function designActiveObject(){
-        console.log('Activated');
+    function designActiveObject(thisObject){
+            let newItem = true;
+            activeQuests.forEach((activeQuest) => {
+                if(activeQuest.questId === thisObject.questId){
+                    newItem = false;
+                }
+            });
+            if(newItem){
+                thisObject.isActive = true;
+                activeQuests.push(thisObject);
+                console.log(activeQuests);
+            }else{
+                console.log('Quest is already active');
+            };
     };
 };
 
@@ -497,4 +781,3 @@ generateQuestLog();
 controlQuestPage();
 
 
-toggleActiveState();

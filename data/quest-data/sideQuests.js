@@ -1,7 +1,7 @@
 export const sideQuests = [
     {
         questId:'02-side-learn-sprite-creation',
-        questType: 'Side',
+        questType: 'side',
         questCategory: 'Web Learning',
         questTitle: 'Learn to create sprites',
         questDetails:'Practice making sprites and tileset in Aseprites for video game animations. Pratice draw these animations as well.',
@@ -51,7 +51,7 @@ export const sideQuests = [
     },
     {
         questId:'02-side-learn-video-animation',
-        questType: 'Side',
+        questType: 'side',
         questCategory: 'Web learning',
         questTitle: 'Learn to animate videos',
         questDetails:'Search for animation software and learn how to use it to create video samples to make for more enjoyable stories.',
@@ -100,7 +100,7 @@ export const sideQuests = [
     },
     {
         questId:'02-side-practice-stories-writing',
-        questType: 'Side',
+        questType: 'side',
         questCategory: 'Web Learning',
         questTitle: 'Practice writing stories ',
         questDetails:'Pratice writing different stories about random things world and thing as well as genres. Watch the YT video for extra advise.',
@@ -151,7 +151,7 @@ export const sideQuests = [
     },
     {
         questId:'02-side-practice-arabic-reading',
-        questType: 'Side',
+        questType: 'side',
         questCategory: 'Religious learning',
         questTitle: 'Learn to read Arabic',
         questDetails:'Learn to read Arabic so you can read the Quran. Complete and practice the videos you previously started.',
@@ -201,7 +201,7 @@ export const sideQuests = [
     },
     {
         questId:'02-side-craft-a-chair',
-        questType: 'Side',
+        questType: 'side',
         questCategory: 'Wood Working',
         questTitle: 'Craft a strong Chair',
         questDetails:'Sa=pend some time designing and creating a chair make of wood design it so you can easily move it around and make it rust proof. The joint make all be made out of wood.',

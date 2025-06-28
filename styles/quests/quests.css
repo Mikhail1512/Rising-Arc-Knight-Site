@@ -73,11 +73,12 @@ main{
     justify-content: start;
     align-items: center;
     font-size: 1.7rem;
-    font-weight: bold;    
+    font-weight: bold;
 }
 
-.add-quest-link{
-    width: 80px;
+.add-quest-button{
+    flex-shrink: 0;
+    width: 88px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -357,10 +358,21 @@ main{
 
 
 
+
+
+
+
+
+
+
+
+
+
 /* This is the quest creator style */
 .quest-creator{
-    width: 700px;
-    height: 400px;
+    flex-shrink: 0;
+    width: 766px;
+    height: 511px;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -369,44 +381,318 @@ main{
 }
 
 .creator-header{
-    width: 700px;
-    height: 60px;
+    width: 100%;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 5px 10px;
+    border-bottom: 1px solid black;
 }
 
 .quest-creator-title{
-    width: 200px;
+    width: 220px;
     height: 60px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.create-button-container{
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.quest-type-selector{
+    width: 164px;
+    height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border: 1px solid black;
+    position: relative;
+    font-size: 1.7rem;
 }
 
-.quest-links{
-    width: 180px;
-    height: 60px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.quest-links div{
-    width: 46px;
+.cancel-creation-button{
+    width: 110px;
     height: 50px;
-    border: 0.7px solid rgb(60, 60, 60);
-    border-radius: 6px;
-    display: flex;
+    display: flex;  
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    position: relative;
+    font-size: 1.7rem;
+}
+
+.create-quest-button{
+    width: 110px;
+    height: 50px;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    position: relative;
+    font-size: 1.7rem;
 }
 
 .creator-body{
-    width: 700px;
-    height: 340px;
-    border: 1px solid black;
+    width: 100%;
+    height: 429px;
+    display: grid;
+    grid-template-columns: 300px 466px;
+    grid-template-rows: 229px 200px;
+    font-size: 1.7rem;
+}
+
+.quest-creator-section-A{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 5px 10px 10px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.quest-text-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+.quest-text-container input{
+    width: 280px;
+    height: 24px;
+    font-size: 1.2rem;
+    outline: none;
+}
+
+.quest-creator-section-B{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px 10px;
+    border-bottom: 1px solid black;
+}
+
+.quest-details-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.quest-details-input{
+    width: 446px;
+    height: 130px;
+    padding: 3px;
+    outline: none;
+    font-size: 1.3rem;
+    resize: none;
+}
+
+.quest-checkbox-container{
+    width: 446px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.2rem;
+}
+.quest-checkbox-container div{
+    width: fit-content;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.quest-checkbox-input{
+    width: 20px;
+    height: 20px;
+}
+
+.quest-creator-section-C{
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 10px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.quest-experience-container{
+    width: 280px;
+    height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+.quest-experience-container input{
+    width: 120px;
+    height: 24px;
+    font-size: 1.3rem;
+    outline: none;
+}
+
+.quest-rank-container{
+    width: 280px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rank-selector{
+    width: 52px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    outline: none;
+}
+
+.quest-keywords-container{
+    flex-shrink: 0;
+    width: 280px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.input-button-container{
+    width: 278px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-keyword-input{
+    width: 180px;
+    height: 26px;
+    font-size: 1.3rem;
+    outline: none;
+}
+
+.add-keyword-button{
+    width: 50px;
+    height: 30px;
+    outline: none;
+    font-size: 1.3rem;
+}
+
+.quest-creator-section-D{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 5px 10px 10px;
+    border-bottom: 1px solid black;
+}
+
+.quest-requirements-list-container{
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.quest-requirements-list-input{
+    width: 446px;
+    height: 30px;
+    outline: none;
+    font-size: 1.3rem;
+}
+
+.quest-objectives-container{
+    width: 446px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-objective-input{
+    width: 190px;
+    height: 24px;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+.add-object-button{
+    width: 50px;
+    height: 30px;
+    outline: none;
+    font-size: 1.3rem;
+}
+
+.image-selector-container{
+    width: 446px;
+    height: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-image-selector{
+    width: 260px;
+    height: 24px;
+    outline: none;
+        font-size: 1.1rem;
+}
+
+.briefing-selector-container{
+    width: 446px;
+    height: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-briefing-selector{
+    width: 260px;
+    height: 24px;
+    outline: none;
+    font-size: 1.1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
