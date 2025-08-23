@@ -1,9 +1,10 @@
-export const mainQuests = [
+export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
+[
     {
         questId:'01-main-create-quest-page',
         questType: 'main',
         questCategory: 'Web Learning',
-        questTitle: 'Create the Quest Page',
+        questTitle: 'Create Quest Page',
         questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',
         questProgress: 0,
         questExperience: 1000,
@@ -202,7 +203,7 @@ export const mainQuests = [
         questId:'01-main-create-first-game',
         questType: 'main',
         questCategory: 'Web Learning',
-        questTitle: 'Create you first Game',
+        questTitle: 'Create your first Game',
         questDetails:'Create a game in godot become famliar with the tool and programming language around using Godot and preparing assets.',
         questProgress: 0,
         questExperience: 2000,
@@ -250,7 +251,7 @@ export const mainQuests = [
         isActive: false,
         requirementsChecked: true,
     }
-]
+];
 
 /*
     This is the refined base template with default info 

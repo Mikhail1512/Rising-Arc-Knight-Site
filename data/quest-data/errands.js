@@ -1,6 +1,6 @@
-export const errandsList = [
+export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
     {
-        questId:'03-errands-get your-passport',
+        questId:'03-errands-get-your-passport',
         questType: 'errand',
         questCategory: 'Fetch Quest',
         questTitle: 'Go get your passport',

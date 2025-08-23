@@ -12,9 +12,13 @@ import { mainQuests } from "../data/quest-data/mainQuests.js";
 import { sideQuests } from "../data/quest-data/sideQuests.js";
 import { errandsList } from "../data/quest-data/errands.js";
 import { collectablesList } from "../data/quest-data/collectables.js";
+import { questBinList } from "../data/quest-data/questBin.js";
 
 const url = new URL(window.location.href);
 const creationUrlParams = url.searchParams.get('creatingNewQuest');
+const deleteUrlParams = url.searchParams.get('loadingDeleteQuests');
+const questIdUrlParams = url.searchParams.get("selectedQuestId");
+const questArrayURLParams = url.searchParams.get("questArrayType")
 
 let questArray = mainQuests;
 let toggleQuestView = false;
@@ -32,7 +36,7 @@ function generateQuestLog(objectItem){
         questHTML = `
             <div class="quest-display-container">
                 <div class="quest-menu-header">
-                    <div class="quest-menu-title js-quest-menu-title"><i class="fa-solid fa-bars"></i></div>
+                    <div class="quest-menu-title js-quest-menu-title">⬅️</div>
                     <div class="quest-type-title-container">
                         <div class="quest-type-title">Active Quests</div>
                         <div class="add-quest-button js-add-quest-button">Create</div>
@@ -40,23 +44,23 @@ function generateQuestLog(objectItem){
                 </div>
                 <div class="quest-type-menu-body">      
                     <div class="active-quests-selection js-active-quests-selection">
-                        <div class="quest-menu-icon"><i class="fa-regular fa-hourglass-half"></i></div>
+                        <div class="quest-menu-icon">⌛</div>
                         <div></div>
                     </div>
                     <div class="main-quests-selection js-main-quests-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-briefcase"></i></div>
+                        <div class="quest-menu-icon">💼</div>
                         <div></div>
                     </div>
                     <div class="side-quests-selection js-side-quests-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-diamond"></i></div>
+                        <div class="quest-menu-icon">🔷</div>
                         <div></div>
                     </div>
                     <div class="errands-selection js-errands-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="quest-menu-icon">🛍️</div>
                         <div></div>
                     </div>
                     <div class="collectables-selection js-collectables-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-star"></i></div>
+                        <div class="quest-menu-icon">⭐</div>
                         <div></div>
                     </div>
                 </div>
@@ -147,26 +151,27 @@ function generateQuestLog(objectItem){
                         <div class="quest-type-title">Active Quests</div>
                         <div class="add-quest-button js-add-quest-button">Create</div>
                     </div>
+
                 </div>
                 <div class="quest-type-menu-body">      
                     <div class="active-quests-selection js-active-quests-selection">
-                        <div class="quest-menu-icon"><i class="fa-regular fa-hourglass-half"></i></div>
+                        <div class="quest-menu-icon active-quest-icon">⌛</div>
                         <div>Active Quests</div>
                     </div>
                     <div class="main-quests-selection js-main-quests-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-briefcase"></i></div>
+                        <div class="quest-menu-icon">💼</div>
                         <div>Main Quests</div>
                     </div>
                     <div class="side-quests-selection js-side-quests-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-diamond"></i></div>
+                        <div class="quest-menu-icon">🔷</div>
                         <div>Side Quests</div>
                     </div>
                     <div class="errands-selection js-errands-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="quest-menu-icon">🛍️</div>
                         <div>Errands</div>
                     </div>
                     <div class="collectables-selection js-collectables-selection">
-                        <div class="quest-menu-icon"><i class="fa-solid fa-star"></i></div>
+                        <div class="quest-menu-icon">⭐</div>
                         <div>Collectables</div>
                     </div>
                 </div>
@@ -177,6 +182,48 @@ function generateQuestLog(objectItem){
                 </div>
             </div>        
         `;
+
+        /*
+            questHTML = `
+                <div class="quest-display-container">
+                    <div class="quest-menu-header">
+                        <div class="quest-menu-title js-quest-menu-title">Quest Menu</div>
+                        <div class="quest-type-title-container">
+                            <div class="quest-type-title">Active Quests</div>
+                            <div class="add-quest-button js-add-quest-button">Create</div>
+                        </div>
+                    </div>
+                    <div class="quest-type-menu-body">      
+                        <div class="active-quests-selection js-active-quests-selection">
+                            <div class="quest-menu-icon"><i class="fa-regular fa-hourglass-half"></i></div>
+                            <div>Active Quests</div>
+                        </div>
+                        <div class="main-quests-selection js-main-quests-selection">
+                            <div class="quest-menu-icon"><i class="fa-solid fa-briefcase"></i></div>
+                            <div>Main Quests</div>
+                        </div>
+                        <div class="side-quests-selection js-side-quests-selection">
+                            <div class="quest-menu-icon"><i class="fa-solid fa-diamond"></i></div>
+                            <div>Side Quests</div>
+                        </div>
+                        <div class="errands-selection js-errands-selection">
+                            <div class="quest-menu-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                            <div>Errands</div>
+                        </div>
+                        <div class="collectables-selection js-collectables-selection">
+                            <div class="quest-menu-icon"><i class="fa-solid fa-star"></i></div>
+                            <div>Collectables</div>
+                        </div>
+                    </div>
+                    <div class="quest-actions-display">
+                        <div class="quests-objects-display">
+                            ${generateCards()}
+                        </div>
+                    </div>
+                </div>        
+            `;
+        */ 
+
         questPageBody.innerHTML = questHTML;
 
         const questDisplayContainer = document.querySelector('.quest-display-container');
@@ -306,9 +353,11 @@ function generateQuestLog(objectItem){
 
         detailHTML = `
             <div class="quest-desription-display">
-                <div class="quest-description-header">
+                <div class="quest-description-header js-quest-description-header">
                     <div class="description-title">${objectItem.questTitle}</div>
-                    <div class="active-quest-button js-active-quest-button">Add</div>
+                    <div class="quest-options-button-container">
+                        <div class="quest-options-button js-quest-options-button">📋</div>
+                    </div>
                 </div>
                 <div class="quest-description-body">
                     ${objectItem.questDetails}
@@ -333,21 +382,60 @@ function generateQuestLog(objectItem){
             </div>
         `;
         
+        /*
+            detailHTML = `
+                <div class="quest-desription-display">
+                    <div class="quest-description-header">
+                        <div class="description-title">${objectItem.questTitle}</div>
+                        <div class="quest-options-button js-quest-options-button">
+                            <i class="${questMenuIcon}"></i>
+                        </div>
+                    </div>
+                    <div class="quest-description-body">
+                        ${objectItem.questDetails}
+                    </div>
+                </div>
+                <div class="quest-objective">
+                    <div class="quest-objective-header">
+                        <div>Objective log</div>
+                        <div class="percent-progress"></div>
+                    </div>
+                    <div class="quest-objective-body">
+                        <ul>
+                            ${listHTML}
+                        </ul>
+                    </div>
+                </div>
+                <div class="confirm-objectives-section">
+                    <div class="confirm-button-container">
+                        <button class="js-revert-objective-button">Revert</button>
+                        <button class="js-confirm-objective-button">Confirm</button>
+                    </div>
+                </div>
+            `;
+        */
+
         document.querySelector('.js-quest-description-section').innerHTML= detailHTML;
-        document.querySelector('.js-active-quest-button').addEventListener('click', () => {
-            let newItem = true;
-            activeQuests.forEach((activeQuest) => {
-                if(activeQuest.questId === objectItem.questId){
-                    newItem = false;
-                }
-            });
-            if(newItem){
-                objectItem.isActive = true;
-                activeQuests.push(objectItem);
-                console.log(activeQuests);
-            }else{
-                console.log('Quest is already active');
-            };
+        document.querySelector('.js-quest-options-button').addEventListener('click', () => {
+                document.querySelector('.js-quest-description-header').innerHTML += `
+                    <div class="quest-control-menu">
+                        <div class="quest-selection-menu-title">Menu</div>
+                        <div class="exit-quest-menu-button js-exit-quest-menu-button">❌</div>
+                        <div class="delete-section-link js-delete-section-link">Delete Quests</div>
+                        <div class="update-section-link js-update-section-link">Update Quests</div>
+                        <button class="activate-quest-button">Activate</button>
+                    </div>
+                `;
+                document.querySelector('.js-exit-quest-menu-button').addEventListener('click', () => {
+                    generateDetailSection();
+                });
+                document.querySelector('.js-delete-section-link').addEventListener('click', () => {
+                    window.location.href = ` quest.html?loadingDeleteQuests=true&selectedQuestId=${objectItem.questId}&questArrayType=${objectItem.questType}`;
+                    controlQuestPage();
+                });
+                document.querySelector('.js-update-section-link').addEventListener('click', () => {
+                    window.alert('This features is currently unavailable')
+                });
         });
         toggleActiveObjective(objectiveList);
     };
@@ -424,6 +512,8 @@ function generateQuestLog(objectItem){
 function generateQuestCreator(){
     const questPageBody = document.querySelector('.js-quests-body-main');
     let questTypeSelected = mainQuests;
+    let selectedQuestType = 'mainQuest';
+    
     let createHTML = '';
 
     createHTML = `
@@ -580,12 +670,16 @@ function generateQuestCreator(){
         questTypeInput.addEventListener('click', () => {
             handleTypeIdText();
             if(questTypeInput.value === 'main'){
+                selectedQuestType = 'mainQuest';
                 questTypeSelected = mainQuests;
             }else if(questTypeInput.value === 'side'){
+                selectedQuestType = 'sideQuest';
                 questTypeSelected = sideQuests;
             }else if(questTypeInput.value === 'errand'){
+                selectedQuestType = 'errandList';
                 questTypeSelected = errandsList;
             }else if(questTypeInput.value === 'collectable'){
+                selectedQuestType = 'collectableList';
                 questTypeSelected = collectablesList;
             }
         });
@@ -604,7 +698,7 @@ function generateQuestCreator(){
         };        
 
         document.querySelector('.js-add-keyword-button').addEventListener('click', () => {
-            tempQuestObject.questKeywords.push(String(document.querySelector('.js-quest-keyword-input').value));
+            tempQuestObject.questKeywords.push((String(document.querySelector('.js-quest-keyword-input').value)).toLowerCase());
             document.querySelector('.js-quest-keyword-input').value = '';
         });
        
@@ -629,8 +723,20 @@ function generateQuestCreator(){
                         count = 'fourth';
                     }else if(tempQuestObject.questObjectives.length === 4){
                         count = 'fifth';
-                    }else if(tempQuestObject.questObjectives.length === 4){
+                    }else if(tempQuestObject.questObjectives.length === 5){
                         count = 'sixth';
+                    }else if(tempQuestObject.questObjectives.length === 6){
+                        count = 'seventh';
+                    }else if(tempQuestObject.questObjectives.length === 7){
+                        count = 'eighth';
+                    }else if(tempQuestObject.questObjectives.length === 8){
+                        count = 'ninth';
+                    }else if(tempQuestObject.questObjectives.length === 9){
+                        count = 'tenth';
+                    }else if(tempQuestObject.questObjectives.length === 10){
+                        count = 'eleventh';
+                    }else if(tempQuestObject.questObjectives.length === 11){
+                        count = 'twelfth';
                     }
 
                     return count;
@@ -643,6 +749,8 @@ function generateQuestCreator(){
         });
         
         document.querySelector('.js-create-quest-button').addEventListener('click', () => {
+            let objectiveArray = tempQuestObject.questObjectives;
+
             tempQuestObject.questId = `${idTypeText}-${inputIdElement.value}`;
             tempQuestObject.questType = questTypeInput.value;
             tempQuestObject.questTitle = questTitleInput.value;
@@ -660,9 +768,10 @@ function generateQuestCreator(){
             console.log(tempQuestObject.questObjectives);
             console.log(tempQuestObject);
             questTypeSelected.push(structuredClone(tempQuestObject));
-            console.log(questTypeSelected);
 
-            // localStorage.setItem(`${selectedQuestType}`, questTypeSelected);
+            localStorage.setItem(`${selectedQuestType}`, JSON.stringify(questTypeSelected));
+
+            console.log(JSON.parse(localStorage.getItem(`${selectedQuestType}`)))
 
             inputIdElement.value = '';
             questTitleInput.value = '';
@@ -672,10 +781,350 @@ function generateQuestCreator(){
             questActivateInput.checked = false;
             questExperienceInput.value = '';
             questRequirementsListInput.value = '';
+
+            objectiveArray = [];
+            tempQuestObject.questKeywords = [];
         });
 
 
     };
+};
+
+function generateDeleteQuests(){
+    const questPageBody = document.querySelector('.js-quests-body-main');
+    let deleteHTML = '';
+
+    deleteHTML = `
+        <div class="quest-data-control js-quest-data-control">
+            <div class="data-control-header">
+                <div class="data-control-title">Quest Data Controls</div>
+                <div class="update-delete-switch-container">
+                    <select name="" id="" class="update-delete-switch">
+                        <option value="Delete">Delete Quest</option>
+                        <option value="Update">Update Quest</option>
+                    </select>
+                    <button class="exit-quest-controls js-exit-quest-controls">❌</button>
+                </div>
+            </div>
+            <div class="data-control-body">
+                <div class="quest-delete-section">
+                    <div class="delete-selection-header">
+                        <div class="delete-selection-title">
+                            Delete Quest
+                        </div>
+                        <button class="delete-quest-button js-delete-quest-button">Delete</button>
+                    </div>
+                    <div class="delete-selection-body">
+                        <div class="delete-section-image-container">
+                            <img src="images/BlankUserImage.png" alt="">
+                        </div>
+
+                        <div class="delete-section-controls">
+                            <div class="quest-title-select-container">
+                                <label>Title:</label>
+                                <div class="delete-title-display js-delete-title-display" id="deleteTitleDisplay"></div>
+                            </div>
+                            <div class="quest-id-select-container">
+                                <label for="questIdSelection">Id:</label>
+                                <select id="questIdSelection" class="quest-id-selection js-quest-id-selection"></select>
+                            </div>
+                            <div class="quest-type-section">
+                                <label for="questTypeButtonsContainer">Type:</label>
+                                <div class="quest-type-buttons-container" id="questTypeButtonsContainer">
+                                    <button class="main-quest-button js-main-array-button"><div>💼</div></button>
+                                    <button class="side-quest-button js-side-array-button"><div>🔷</div></button>
+                                    <button class="errand-list-button js-errand-array-button"><div>🛍️</div></button>
+                                    <button class="collectable-list-button js-collectable-array-button"><div>⭐</div></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quest-bin-section">
+                    <div class="quest-bin-header">
+                        <div class="quest-bin-header-title">Quest Bin</div>
+                        <div class="clear-bin-buttons">
+                            <button class="binned-restore-all-button js-binned-restore-all-button"><div>➕</div></button>
+                            <button class="remove-all-binned-quest-button js-remove-all-binned-quest-button"><div>🗑️</div></button>
+                        </div>
+                    </div>
+                    <div class="quest-bin-body js-quest-bin-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    function InitializingDeleteSection(){
+        const deleteIdSelector = document.querySelector(".js-quest-id-selection");
+        const deleteTitleDisplay = document.querySelector(".js-delete-title-display");
+        
+        let optionsHTML = '';
+        let selectedIdValue = '';
+        let selectedTitleText = '';
+        let questTypeSelection = '';
+
+        if(questArrayURLParams === 'collectable'){
+            questArray = collectablesList;
+        }else if(questArrayURLParams === 'errand'){
+            questArray = errandsList;
+        }else if(questArrayURLParams === 'side'){
+            questArray = sideQuests;
+        }else{
+            questArray = mainQuests;
+        };
+
+        questArray.forEach((selectObjectItem) => {
+
+            if(selectObjectItem.questId === questIdUrlParams){
+                    selectedIdValue = selectObjectItem.questId;
+                    selectedTitleText = selectObjectItem.questTitle;
+                    questTypeSelection = selectObjectItem.questType;        
+            }
+            optionsHTML += `
+                <option value="${selectObjectItem.questId}">${selectObjectItem.questId}</option>
+            `;
+        });
+        
+        deleteIdSelector.innerHTML = optionsHTML;
+        deleteIdSelector.value = selectedIdValue;
+        deleteTitleDisplay.innerHTML = selectedTitleText;
+        // document.querySelector(`.js-${questTypeSelection}-array-button`).style.backgroundColor = '#89cfc7';
+    };
+
+    function deleteSectionController(){
+        const mainArraySelector = document.querySelector('.js-main-array-button');
+        const sideArraySelector = document.querySelector('.js-side-array-button');
+        const errandArraySelector = document.querySelector('.js-errand-array-button');
+        const collectableArraySelector = document.querySelector('.js-collectable-array-button');
+        const deleteIdSelector = document.querySelector(".js-quest-id-selection");
+        const deleteTitleDisplay = document.querySelector(".js-delete-title-display");
+
+        
+        function editDeletionSectionInfo(){
+            let optionsHTML = '';
+            let confirmNewTitle = false; 
+
+            questArray.forEach((selectObjectItem) => {
+                optionsHTML += `
+                    <option value="${selectObjectItem.questId}">${selectObjectItem.questId}</option>
+                `;
+
+                if(!confirmNewTitle){
+                    deleteTitleDisplay.innerHTML = selectObjectItem.questTitle; 
+                    confirmNewTitle = true; 
+                }
+
+            });
+            
+            deleteIdSelector.innerHTML = optionsHTML;
+        } 
+
+        document.querySelector('.js-delete-quest-button').addEventListener('click', () => {
+            let tempQuestArray = [];
+            
+            questArray.forEach((deletionQuestObject) => {
+                if(deletionQuestObject.questId === deleteIdSelector.value){
+                    questBinList.push(deletionQuestObject);
+                }else{
+                    tempQuestArray.push(deletionQuestObject)
+                }
+            });
+
+            questArray = structuredClone(tempQuestArray);
+            editDeletionSectionInfo();
+            generateQuestBinCards();
+        });
+
+        deleteIdSelector.addEventListener('click', () => {
+            questArray.forEach((selectedQuestType) => {
+                if(deleteIdSelector.value === selectedQuestType.questId){
+                    deleteTitleDisplay.innerHTML = selectedQuestType.questTitle;
+                }
+            });
+        }); 
+
+        mainArraySelector.addEventListener('click', () => {
+            questArray = mainQuests;
+            editDeletionSectionInfo();
+            mainArraySelector.style.backgroundColor = '#89cfc7';
+            sideArraySelector.style.backgroundColor = 'white';
+            errandArraySelector.style.backgroundColor = 'white';
+            collectableArraySelector.style.backgroundColor = 'white';
+        });
+        sideArraySelector.addEventListener('click', () => {
+            questArray = sideQuests;
+            editDeletionSectionInfo();
+            mainArraySelector.style.backgroundColor = 'white';
+            sideArraySelector.style.backgroundColor = '#89cfc7';
+            errandArraySelector.style.backgroundColor = 'white';
+            collectableArraySelector.style.backgroundColor = 'white';
+        });
+        errandArraySelector.addEventListener('click', () => {
+            questArray = errandsList;
+            editDeletionSectionInfo();
+            mainArraySelector.style.backgroundColor = 'white';
+            sideArraySelector.style.backgroundColor = 'white';
+            errandArraySelector.style.backgroundColor = '#89cfc7';
+            collectableArraySelector.style.backgroundColor = 'white';
+        });
+        collectableArraySelector.addEventListener('click', () => {
+            questArray = collectablesList;
+            editDeletionSectionInfo();
+            mainArraySelector.style.backgroundColor = 'white';
+            sideArraySelector.style.backgroundColor = 'white';
+            errandArraySelector.style.backgroundColor = 'white';
+            collectableArraySelector.style.backgroundColor = '#89cfc7';
+        });
+    };
+
+    function generateQuestBinCards(){
+        let binCardHTML = '';
+
+        questBinList.forEach((binnedObject) => {
+            binCardHTML += `
+                <div class="binned-quest-card">
+                    <div class="bin-card-image-container">
+                        <img src="images/BlankUserImage.png" alt="Blank">
+                    </div>
+                    <div class="bin-quest-card-details">
+                        <div class="binned-quest-title-container">
+                            <div class="binned-quest-title">${binnedObject.questTitle}</div>
+                            <button class="remove-binned-quest-button js-remove-binned-quest-${binnedObject.questId}-button"><div>🗑️</div></button>
+                        </div>
+                        <div class="binned-quest-body-container">
+                            <div class="binned-rank-exp-container">
+                                <div class="binned-quest-rank">Rank ${binnedObject.questRank}</div>
+                                <div class="binned-quest-experience">${binnedObject.questExperience} exp</div>
+                            </div>
+                            <button class="binned-restore-button js-binned-restore-${binnedObject.questId}-button"><div>➕</div></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+
+        });
+        document.querySelector('.js-quest-bin-body').innerHTML = binCardHTML;
+    };
+
+    function binSectionController(){
+        const deleteIdSelector = document.querySelector(".js-quest-id-selection");
+        const deleteTitleDisplay = document.querySelector(".js-delete-title-display");
+
+        document.querySelector('.js-binned-restore-all-button').addEventListener('click', () => {
+
+            questPageBody.innerHTML += `
+                <div class="empty-bin-checked">
+                    <div class="empty-bin-checked-header">
+                        <div>Restoring binned quests</div>
+                        <button>➕</button>
+                    </div>
+                    <div class="empty-bin-checked-body">
+                        <div class="empty-bin-body-text">Are you sure you want to restore all binned quests?</div>
+                        <div class="empty-bin-body-warning">This change is permenant!</div>
+                    </div>
+                    <div class="empty-bin-checked-footer">
+                        <button class="cancel-clear-bin js-cancel-restore-bin">Cancel</button>
+                        <button class="confirm-clear-bin js-confirm-restore-bin">Confirm</button>
+                    </div>
+                </div>
+            `;
+            document.querySelector(".js-confirm-restore-bin").addEventListener('click',() => {
+                let optionsHTML = '';
+                let confirmNewTitle = false;
+
+                questBinList.forEach((binnedObject, index) => {
+                    if(binnedObject.questType === 'main'){
+                        questArray = mainQuests;
+                    } else if(binnedObject.questType === 'side'){
+                        questArray = sideQuests;
+                    } else if(binnedObject.questType === 'errand'){
+                        questArray = errandsList;
+                    } else if(binnedObject.questType === 'collectable'){
+                        questArray = collectablesList;
+                    }
+
+                    questArray.push(binnedObject);
+                });
+                questBinList.splice(0);
+                deleteTitleDisplay.innerHTML = questArray[0].questTitle;
+                generateDeleteQuests();
+
+            });
+            document.querySelector(".js-cancel-restore-bin").addEventListener('click',() => {
+                generateDeleteQuests();
+            })
+        });
+        document.querySelector('.js-remove-all-binned-quest-button').addEventListener('click', () => {
+            questPageBody.innerHTML += `
+                <div class="empty-bin-checked">
+                    <div class="empty-bin-checked-header">
+                        <div>Clearing Out Quest Bin</div>
+                        <button>🗑️</button>
+                    </div>
+                    <div class="empty-bin-checked-body">
+                        <div class="empty-bin-body-text">Are you sure you want to empty the bin?</div>
+                        <div class="empty-bin-body-warning">This is a permenant delete !</div>
+                    </div>
+                    <div class="empty-bin-checked-footer">
+                    <button class="cancel-clear-bin js-cancel-clear-bin">Cancel</button>
+                        <button class="confirm-clear-bin js-confirm-clear-bin">Confirm</button>
+                    </div>
+                </div>
+            `;
+            document.querySelector(".js-confirm-clear-bin").addEventListener('click',() => {
+                questBinList.splice(0);
+                generateDeleteQuests();
+            })
+            document.querySelector(".js-cancel-clear-bin").addEventListener('click',() => {
+                generateDeleteQuests();
+            })
+        });
+        questBinList.forEach((binnedObject, index) => {
+            document.querySelector(`.js-remove-binned-quest-${binnedObject.questId}-button`).addEventListener('dblclick', () => {
+                questBinList.splice(index, 1);
+                generateQuestBinCards();
+                binSectionController()
+            });
+            document.querySelector(`.js-binned-restore-${binnedObject.questId}-button`).addEventListener('click', () => {
+                if(binnedObject.questType === 'main'){
+                    questArray = mainQuests;
+                } else if(binnedObject.questType === 'side'){
+                    questArray = sideQuests;
+                } else if(binnedObject.questType === 'errand'){
+                    questArray = errandsList;
+                } else if(binnedObject.questType === 'collectable'){
+                    questArray = collectablesList;
+                }
+
+                questArray.push(binnedObject);
+                questBinList.splice(index, 1);
+                deleteSectionController();
+                generateQuestBinCards();
+                binSectionController();
+            });
+        });
+    }
+    
+
+    questPageBody.innerHTML = deleteHTML;
+
+    InitializingDeleteSection();
+    deleteSectionController();
+    generateQuestBinCards();
+    binSectionController();
+
+    document.querySelector('.js-exit-quest-controls').addEventListener('click', () => {
+        window.location.href = 'quest.html'
+        controlQuestPage()
+    });
+
+};
+
+function generateUpdateQuest(){v
+
 };
 
 function controlQuestPage(){
@@ -686,6 +1135,8 @@ function controlQuestPage(){
         document.querySelector('.cancel-creation-button').addEventListener('click', () => {
             window.location.href = `quest.html`;
         });
+    }else if(deleteUrlParams){
+        generateDeleteQuests();
     }else{
         questArray.forEach((thisObject) => {
 
@@ -779,5 +1230,3 @@ function toggleActiveState(){
 generateQuestLog();
 
 controlQuestPage();
-
-

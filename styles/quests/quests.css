@@ -12,6 +12,7 @@ body{
     font-size: 1.7rem;
     min-height: 100vh;
     scroll-behavior: smooth;
+    
 }
 
 
@@ -23,6 +24,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: start;
+    position: relative;
 }
 
 .quest-display-container{
@@ -131,8 +133,26 @@ main{
 }
 
 .quest-menu-icon{
-    font-size: 2.3rem;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
 }
+
+.active-quest-icon{
+    width: 26px;
+    height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+}
+
+/* .quest-menu-icon{
+    font-size: 2.3rem;
+} */
 
 .quest-actions-display{
     grid-column: 2/3;
@@ -248,26 +268,106 @@ main{
 }
 
 .quest-description-header{
+    flex-shrink: 0;
     width: 100%;
     height: 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .quest-description-header .description-title{
     font-size: 1.6rem;
 }
 
-.active-quest-button{
+.quest-options-button-container{
+    width: 34px;
+    height: 34px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    border-radius: 4px;
-    padding: 3px 6px;
+    font-size: 1.5rem;
+}
+
+.quest-control-menu{
+    width: 190px;
+    height: 192px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 7px 6px 139px 25px 13px;
+    grid-template-rows: 6px 36px 10px 42px 42px 42px 6px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; */
+    position: absolute;
+    background-color: #d5d2d2;
+    top: -4%;
+    right: -1%;
+    z-index: 2;
+}
+ 
+.quest-selection-menu-title{
+    grid-column: 2/4;
+    grid-row: 2/3;
+    width: 120px;
+    height: 32px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.exit-quest-menu-button{
+    grid-column: 4/6;
+    grid-row: 2/3;
+    width: 32px;
+    height: 32px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.3rem;
-    font-weight: 600;
+}
+
+.delete-section-link{
+    grid-column: 3/5;
+    grid-row: 4/5;
+    width: 164px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+.update-section-link{
+    grid-column: 3/5;
+    grid-row: 5/6;
+    width: 164px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.activate-quest-button{
+    grid-column: 3/5;
+    grid-row: 6/7;
+    width: 164px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 0.8px solid black;
+    border-radius: 2px;
+    outline: none;
+    font-size: 1.5rem;
 }
 
 .quest-description-body{
@@ -361,6 +461,463 @@ main{
 
 
 
+
+
+
+
+/* Quest Data control's style */
+
+
+
+.quest-data-control{
+    width: 99.8%;
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.data-control-header{
+    width: 100%;
+    height: 60px;
+    border: 1px solid black;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.data-control-title{
+    flex-shrink: 0;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 1.9rem;
+    font-weight: bold;
+}
+
+.update-delete-switch-container{
+    width: 250px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.update-delete-switch{
+    width: 188px;
+    height: 34px;
+    border: 1px solid black;
+    font-size: 1.7rem;
+}
+
+.exit-quest-controls{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    outline: none;
+    font-size: 1.8rem;
+    background-color: #d5d2d2;
+}
+/* .exit-quest-controls{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    outline: none;
+    font-size: 2rem;
+    background-color: #d5d2d2;
+} */
+
+
+
+
+
+.data-control-body{
+    flex-shrink: 0;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.quest-delete-section{
+    flex-shrink: 0;
+    width: 330px;
+    height: 450px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-selection-header{
+    flex-shrink: 0;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.delete-button-container{
+    flex-shrink: 0;
+    width: fit-content;
+    height: 44px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.delete-quest-button{
+    width: 74px;
+    height: 34px;
+    font-size: 1.5rem;
+}
+
+
+
+.delete-selection-body{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.delete-section-image-container{
+    flex-shrink: 0;
+    width: 350px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-section-image-container img{
+    width: 240px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.delete-section-controls{
+    width: 248px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-title-select-container{
+    width: 248px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-title-select-container label{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.delete-title-display{
+    width: 182px;
+    height: 24px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 1.12rem;
+}
+
+.quest-id-select-container{
+    width: 248px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-id-select-container label{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.quest-id-selection{
+    width: 200px;
+    height: 30px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.quest-type-section{
+    width: 248px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-type-section label{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.quest-type-buttons-container{
+    width: 170px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest-type-buttons-container button{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+
+
+
+.quest-bin-section{
+    flex-shrink: 0;
+    width: 436px;
+    height: 450px;
+    border: 1px solid black;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.quest-bin-header{
+    flex-shrink: 0;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.quest-bin-header-title{
+    font-size: 2rem;
+}
+
+.clear-bin-buttons{
+    width: 80px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.binned-restore-all-button{
+    width: 38px;
+    height: 32px;
+    padding: 2px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.remove-all-binned-quest-button{
+    width: 38px;
+    height: 32px;
+    padding: 2px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.quest-bin-body{
+    flex-shrink: 0;
+    width: 100%;
+    height: 398px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 16px;
+    padding: 10px 4px;
+    padding-left: 10px;
+    overflow: hidden;
+}
+
+.quest-bin-body:hover{
+    overflow: auto;
+}
+
+.binned-quest-card{
+    width: 400px;
+    height: 90px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bin-card-image-container{
+    width: 76px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bin-card-image-container img{
+    border: 1px solid black;
+    width: 64px;
+    height: 60px;
+}
+
+
+.bin-quest-card-details{
+    width: 300px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.binned-quest-title-container{
+    width: 96%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.binned-quest-title{
+    font-size: 1.5rem;
+    align-items: end;
+}
+
+.remove-binned-quest-button{
+    width: 34px;
+    height: 28px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.binned-quest-body-container{
+    width: 96%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.binned-rank-exp-container{
+    width: 190px;
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.binned-restore-button{
+    width: 34px;
+    height: 28px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.empty-bin-checked{
+    width: 400px;
+    height: 230px;
+    background-color: #d5d2d2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    position: absolute;
+    top: 30%;
+}
+
+.empty-bin-checked-header{
+    width: 399px;
+    height: 60px;
+    padding: 0 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    font-size: 1.9rem;
+}
+
+.empty-bin-checked-header button{
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+}
+
+.empty-bin-checked-body{
+    background-color: #dedddd;
+    width: 398px;
+    height: 110px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    gap: 10px;
+}
+
+.empty-bin-body-text{
+    font-size: 1.6rem;
+}
+
+.empty-bin-body-warning{
+    font-size: 1.2rem;
+}
+
+.empty-bin-checked-footer{
+    background-color: #dedddd;
+    width: 398px;
+    height: 58px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 1.7rem;
+}
+
+.empty-bin-checked-footer button{
+    width: 110px;
+    height: 34px;
+    font-size: 1.5rem;
+}
 
 
 

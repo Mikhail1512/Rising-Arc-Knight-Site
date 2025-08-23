@@ -1,9 +1,9 @@
-export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
+export const questBinList = [
     {
-        questId:'01-main-create-quest-page',
+        questId:'01-main-live-with-homies',
         questType: 'main',
         questCategory: 'Web Learning',
-        questTitle: 'Create the Quest Page',
+        questTitle: 'Live with Homies',
         questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',
         questProgress: 0,
         questExperience: 1000,
@@ -49,10 +49,10 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:'01-main-go-job-hunting',
+        questId:'01-main-sibling-gaming-videos',
         questType: 'main',
         questCategory: 'Job Hunting',
-        questTitle: 'Find a suitable Job',
+        questTitle: 'Sibling Gaming Video',
         questDetails:'Find a job that meets your requirements and figure out how to meets theirs. This will allow a major amount of requirements from others quests to be met.',
         questProgress: 0,
         questExperience: 2400,
@@ -63,7 +63,7 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
             {
                 objectivesId:'01-main-go-job-hunting-first-objective',
                 objectivesTitle:'Gather infomation about job requirement and responsibilities.',
-                completed: false
+                completed: true
             },
             {
                 objectivesId:'01-main-go-job-hunting-second-objective',
@@ -98,10 +98,10 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:'02-side-learn-sprite-creation',
+        questId:'02-side-avocardo-tree-plantation',
         questType: 'side',
         questCategory: 'Web Learning',
-        questTitle: 'Learn to create sprites',
+        questTitle: 'Plant an Avocardo tree',
         questDetails:'Practice making sprites and tileset in Aseprites for video game animations. Pratice draw these animations as well.',
         questProgress: 0,
         questExperience: 320,
@@ -148,10 +148,59 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:'03-errands-get your-passport',
+        questId:'02-side-Repair-my-mistfan',
+        questType: 'side',
+        questCategory: 'Web learning',
+        questTitle: 'Repair my MistFan',
+        questDetails:'Search for animation software and learn how to use it to create video samples to make for more enjoyable stories.',
+        questProgress: 0,
+        questExperience: 240,
+        questRank: 'A-',
+        questImage: 'Pending',
+        questRequirements: 'Laptop, Software and time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-learn-video-animation-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-learn-video-animation-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-learn-video-animation-third-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-learn-video-animation-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-learn-video-animation-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'animated',
+            'software',
+            'videos',
+            'drawing' 
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'03-errands-find-your-earphones',
         questType: 'errand',
         questCategory: 'Fetch Quest',
-        questTitle: 'Go get your passport',
+        questTitle: 'Find your Earphones',
         questDetails:'Go to the munciple office to create a passport so you can apply for oversea jobs',
         questProgress: 0,
         questExperience: 100,
@@ -197,10 +246,10 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:"03-errands-make-new-vitae's",
+        questId:"03-errands-change-the-lightbulb",
         questType: 'errand',
         questCategory: 'Create documents',
-        questTitle: "Make three new CVs",
+        questTitle: "Change the Lightbulb",
         questDetails:'Make three CVs with different styles so you can send them to the appropriate job openings.',
         questProgress: 0,
         questExperience: 2400,
@@ -246,5 +295,5 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         isComplete: false,
         isActive: false,
         requirementsChecked: true,
-    }
-]
+    },
+];

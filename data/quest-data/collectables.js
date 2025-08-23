@@ -1,4 +1,4 @@
-export const collectablesList = [
+export const collectablesList = JSON.parse(localStorage.getItem('collectableList')) || [
     {
         questId:'04-collectable-code-8-license',
         questType: 'collectable',

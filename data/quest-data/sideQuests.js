@@ -1,4 +1,5 @@
-export const sideQuests = [
+export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
+[
     {
         questId:'02-side-learn-sprite-creation',
         questType: 'side',
