@@ -4,12 +4,12 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         questId:'01-main-create-quest-page',
         questType: 'main',
         questCategory: 'Web Learning',
-        questTitle: 'Create Quest Page',
+        questTitle: 'Create the Quest Page',
         questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',
         questProgress: 0,
         questExperience: 1000,
         questRank: 'B+',
-        questImage: 'Pending',
+        questImage: 'images/ScrollQuestIcon.jpg',
         questRequirements: 'Laptop and time',
         questObjectives:[
             {
@@ -42,7 +42,9 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
             'website',
             'code',
             'creation',
-            'learning' 
+            'learning',
+            'alien',
+            'words'
         ],
         briefingLink: 'Pending',
         isComplete: false,
@@ -58,7 +60,7 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         questProgress: 0,
         questExperience: 2400,
         questRank: 'A-',
-        questImage: 'Pending',
+        questImage: 'images/CvQuestIcon.jpg',
         questRequirements: 'Laptop, Qualifications, job hunter page  and time',
         questObjectives:[
             {
@@ -107,7 +109,7 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         questProgress: 0,
         questExperience: 3400,
         questRank: 'S',
-        questImage: 'Pending',
+        questImage: 'images/ScrollQuestIcon.jpg',
         questRequirements: 'Laptop, Books, Money, Tools, Material and time',
         questObjectives:[
             {
@@ -158,7 +160,7 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         questProgress: 0,
         questExperience: 10000,
         questRank: 'B',
-        questImage: 'Pending',
+        questImage: 'images/OpenBookIcon.jpg',
         questRequirements: 'Laptop, Books, Quran and time',
         questObjectives:[
             {
@@ -208,7 +210,7 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         questProgress: 0,
         questExperience: 2000,
         questRank: 'A',
-        questImage: 'Pending',
+        questImage: 'images/GameControllerIcon.webp',
         questRequirements: 'Laptop and time',
         questObjectives:[
             {
@@ -250,7 +252,165 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         isComplete: false,
         isActive: false,
         requirementsChecked: true,
-    }
+    },
+    {
+        questId:'01-main-learn-day-trading',
+        questType: 'main',
+        questCategory: 'Web Learning',
+        questTitle: 'Learn Day Trading',
+        questDetails:'Learn more about day trading. Practice back testing, study market structure, learn about the fibonacci sequence and learn to calculate pips, lots size, market values and currency exchange.',
+        questProgress: 0,
+        questExperience: 3000,
+        questRank: 'A+',
+        questImage: 'images/DayTradingIcon.png',
+        questRequirements: 'Laptop and time',
+        questObjectives:[
+            {
+                objectivesId:'01-main-learn-day-trading-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-learn-day-trading-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-learn-day-trading-third-objective',
+                objectivesTitle:'.',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-learn-day-trading-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-learn-day-trading-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'website',
+            'fibonacci',
+            'sequence',
+            'trade',
+            'stock',
+            'gold',
+            'money',
+            'supply', 
+            'demand',
+            'market',
+            'structure',
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,   
+    },
+    {
+        questId:'01-main-study-gdscript-syntax',
+        questType: 'main',
+        questCategory: 'Web Learning',
+        questTitle: 'Study GDscript Syntax',
+        questDetails:'Practice learning and using GDscript syntax and practice making game logic inside of Godot.',
+        questProgress: 0,
+        questExperience: 840,
+        questRank: 'C+',
+        questImage: 'images/CodingSiteIcon.webp',
+        questRequirements: 'Laptop and time',
+        questObjectives:[
+            {
+                objectivesId:'01-main-study-gdscript-syntax-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-third-objective',
+                objectivesTitle:'.',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'godot',
+            'gdscript',
+            'programming',
+            'gaming',
+            'logic',
+            'engine',  
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'01-main-practice-2d-sprite',
+        questType: 'main',
+        questCategory: 'Web Learning',
+        questTitle: 'Practice 2D Sprite',
+        questDetails:'Pratice making 2d sprites, tilesets and tilemap. Test out different pixel sprite sizes, put together reusable color palettes, try to put together shapes in order to make more compilcated sprites, and learn to animate them.',
+        questProgress: 0,
+        questExperience: 840,
+        questRank: 'C+',
+        questImage: 'images/GameDrawnIcon.jpg',
+        questRequirements: 'Laptop and time',
+        questObjectives:[
+            {
+                objectivesId:'01-main-practice-2d-sprite-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-practice-2d-sprite-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-practice-2d-sprite-third-objective',
+                objectivesTitle:'.',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-practice-2d-sprite-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-practice-2d-sprite-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [ 
+            'sprite',
+            'design',
+            'pixels',
+            'gaming',
+            'shapes ',
+            'aseprite'  
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,
+    },
 ];
 
 /*

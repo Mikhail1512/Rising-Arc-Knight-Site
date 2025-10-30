@@ -11,7 +11,152 @@
 <body>
     <header class="js-index-header"></header>
     <main class="js-quests-body-main">
-
+        <!-- <div class="update-quest-data-controller">
+            <div class="update-quest-data-header">
+                <div class="data-control-title">Quest Data Controls</div>
+                <div class="update-delete-switch-container">
+                    <select name="" id="" class="update-delete-switch">
+                        <option value="Update">Update Quest</option>
+                        <option value="Delete">Delete Quest</option>
+                    </select>
+                    <button class="exit-quest-controls js-exit-quest-controls">❌</button>
+                </div>
+            </div>
+            <div class="update-quest-data-body">
+                <div class="quest-body-title-container">
+                    <div class="update-quest-title">Update Quest</div>
+                    <button class="update-quest-button">Update</button>
+                </div>
+                <div class="quest-body-data-container">
+                    <div class="quest-update-selector">
+                        <div class="quest-update-title-selection">
+                            <label for="updateTitleQuestSelector">Quest Title:</label>
+                            <select id="updateTitleQuestSelector" class="update-title-quest-selector">
+                                <option value="Blank-Title">Blank-Title-entry</option>
+                                <option value="Blank-Title">Blank-Title-entry</option>
+                                <option value="Blank-Title">Blank-Title-entry</option>
+                            </select>
+                        </div>
+                        <div class="quest-update-id-selection">
+                            <label for="updateIdQuestSelector">Quest Id:</label>
+                            <select id="updateIdQuestSelector" class="update-id-quest-selector">
+                                <option value="Blank-Id">01-main-create-quest-page</option>
+                                <option value="Blank-Id">01-main-create-quest-page</option>
+                                <option value="Blank-Id">01-main-create-quest-page</option>
+                            </select>
+                        </div>
+                        <div class="update-quest-type-selection">
+                            <label for="questUpdateTypeSelection">Type:</label>
+                            <div class="quest-update-type-selection" id="questUpdateTypeSelection">
+                                <button class="main-quest-button js-main-array-button"><div>💼</div></button>
+                                <button class="side-quest-button js-side-array-button"><div>🔷</div></button>
+                                <button class="errand-list-button js-errand-array-button"><div>🛍️</div></button>
+                                <button class="collectable-list-button js-collectable-array-button"><div>⭐</div></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-detail-section">
+                        <div class="update-quest-details-container">
+                            <label for="updateQuestDetailInput">Quest Details:</label>
+                            <textarea id="updateQuestDetailInput" class="update-quest-detail-input"></textarea>
+                        </div>
+                        <div class="quest-category-update-container">
+                            <label for="questCategoryUpdateInput">Quest Category:</label>
+                            <input type="text" id="questCategoryUpdateInput" class="quest-category-update-input">
+                        </div>
+                        <div class="update-objectives-controls">
+                            <label for="updateQuestObjectivesInput">Update Objectives:</label>
+                            <div class="update-objective-body">
+                                <div class="update-objectives-input-container">
+                                    <input type="text" id="updateQuestObjectivesInput" class="update-quest-objectives-input">
+                                    <select id="objectivesIndexSelector" class="objectives-index-selector">
+                                        <option value="#">#</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                <button class="objectives-sumbit-update-button">Update</button>
+                            </div>
+                        </div>
+                        <div class="quest-update-progress-container">
+                            <label for="updateQuestProgressInput">Quest Progress:</label>
+                            <input type="range" min="0" max="100" value="90" id="updateQuestProgressInput" class="update-quest-progress-input">
+                        </div>
+                        <div class="requirements-active-check-container">
+                            <div class="active-quests-checkbox-container">
+                                <label for="activeQuestsCheckbox">Active Quest:</label>
+                                <input type="checkbox" id="activeQuestsCheckbox" class="active-quests-checkbox-update">
+                            </div>
+                            <div class="quests-requirements-checkbox-container">
+                                <label for="questsRequirementsCheckbox">Requirements Quest:</label>
+                                <input type="checkbox" id="questsRequirementsCheckbox" class="quests-requirements-checkbox-update">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-keywords-section">
+                        <div class="quest-experience-update-control">
+                            <label for="questExperienceUpdateInput">Experience:</label>
+                            <input type="number" id="questExperienceUpdateInput" class="quest-experience-update-input">
+                        </div>
+                        <div class="quest-rank-updater">
+                            <label for="rankSelectInput">Select Rank:</label>
+                            <select id="rankSelectInput" class="rank-select-input">
+                                <option value="S">S</option>
+                                <option value="A+">A+</option>
+                                <option value="A">A</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B">B</option>
+                                <option value="B-">B-</option>
+                                <option value="C+">C+</option>
+                                <option value="C">C</option>
+                                <option value="C-">C-</option>
+                                <option value="D+">D+</option>
+                                <option value="D">D</option>
+                                <option value="D-">D-</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
+                        <div class="update-quest-keywords-section">
+                            <label for="updateKeywordsInput">Update Keywords:</label>
+                            <div class="keywords-update-body-section">
+                                <div class="keyword-count-container">
+                                    <input type="text" id="updateKeywordsInput" class="update-keywords-input">
+                                    <select class="update-keywords-index-selector">
+                                        <option value="#">#</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                                <button class="sumbit-keywords-button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-imaging-section">
+                        <div class="requirements-update-section">
+                            <label for="requirementsQuestUpdateInput">Quest Requirements:</label>
+                            <input type="text" id="requirementsQuestUpdateInput" class="requirements-quest-update-input">
+                        </div>
+                        <div class="image-update-container">
+                            <label for="imageUpdateSelection">Quest Image:</label>
+                            <select id="imageUpdateSelection" class="image-update-selection">
+                                <option value="pending" default>Select from availiable options</option>
+                            </select>
+                        </div>
+                        <div class="update-briefing-link-container">
+                            <label for="updateBriefingLinkSelector">Quest Briefing:</label>
+                            <select id="updateBriefingLinkSelector" class="update-briefing-link-selector">
+                                <option value="pending" default>Select from availiable options</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </main>
     <footer></footer>
     <script type="module" src="scripts/quests.js"></script>

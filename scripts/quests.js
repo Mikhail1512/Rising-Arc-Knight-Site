@@ -13,12 +13,14 @@ import { sideQuests } from "../data/quest-data/sideQuests.js";
 import { errandsList } from "../data/quest-data/errands.js";
 import { collectablesList } from "../data/quest-data/collectables.js";
 import { questBinList } from "../data/quest-data/questBin.js";
+import { questImageIcons } from "../data/quest-data/questImageArray.js";
 
 const url = new URL(window.location.href);
 const creationUrlParams = url.searchParams.get('creatingNewQuest');
 const deleteUrlParams = url.searchParams.get('loadingDeleteQuests');
+const updateUrlParams = url.searchParams.get('loadingUpdateQuests');
 const questIdUrlParams = url.searchParams.get("selectedQuestId");
-const questArrayURLParams = url.searchParams.get("questArrayType")
+const questArrayURLParams = url.searchParams.get("questArrayType");
 
 let questArray = mainQuests;
 let toggleQuestView = false;
@@ -293,10 +295,11 @@ function generateQuestLog(objectItem){
         let cardsHTML = '';
 
         questArray.forEach((thisObject) => {
+            
             if(toggleQuestView){
                 cardsHTML +=`
                     <div class="quest-cards js-quest-cards-${thisObject.questId}">
-                        <div class="quest-icon"><img src="" alt="" style="
+                        <div class="quest-icon"><img src="${thisObject.questImage}" alt="" style="
                             width: 100%;
                             height: 100%;
                         "></div>
@@ -313,7 +316,7 @@ function generateQuestLog(objectItem){
             }else{
                 cardsHTML +=`
                 <div class="quest-cards js-quest-cards-${thisObject.questId}">
-                    <div class="quest-icon"><img src="" alt="" style="
+                    <div class="quest-icon"><img src="${thisObject.questImage}" alt="" style="
                         width: 100%;
                         height: 100%;
                     "></div>
@@ -430,11 +433,12 @@ function generateQuestLog(objectItem){
                     generateDetailSection();
                 });
                 document.querySelector('.js-delete-section-link').addEventListener('click', () => {
-                    window.location.href = ` quest.html?loadingDeleteQuests=true&selectedQuestId=${objectItem.questId}&questArrayType=${objectItem.questType}`;
+                    window.location.href = `quest.html?loadingDeleteQuests=true&selectedQuestId=${objectItem.questId}&questArrayType=${objectItem.questType}`;
                     controlQuestPage();
                 });
                 document.querySelector('.js-update-section-link').addEventListener('click', () => {
-                    window.alert('This features is currently unavailable')
+                    window.location.href = `quest.html?loadingUpdateQuests=true&selectedQuestId=${objectItem.questId}&questArrayType=${objectItem.questType}`;
+                    controlQuestPage();
                 });
         });
         toggleActiveObjective(objectiveList);
@@ -610,7 +614,7 @@ function generateQuestCreator(){
                     <div class="image-selector-container">
                         <label for="questImageSelector">Quest Image:</label>
                         <select id="questImageSelector" class="quest-image-selector js-quest-image-selector">
-                            <option value="pending" default>Select from availiable options</option>
+                            
                         </select>
                     </div>
                     <div class="briefing-selector-container">
@@ -653,6 +657,7 @@ function generateQuestCreator(){
         };
 
         let idTypeText = '';
+        let questImageHtml = '<option value="pending" default>Select from availiable options</option>';
 
         const inputIdElement = document.querySelector('.js-quest-id-input');
         const questTypeInput = document.querySelector('.js-quest-type-selector');
@@ -696,6 +701,14 @@ function generateQuestCreator(){
                 idTypeText = `04-${questTypeInput.value}`
             }
         };        
+
+        questImageIcons.forEach((questImageReference) => {
+            questImageHtml += `
+                <option value="${questImageReference}" default>${questImageReference}</option>
+            `;  
+        });
+
+        document.querySelector('.js-quest-image-selector').innerHTML = questImageHtml;
 
         document.querySelector('.js-add-keyword-button').addEventListener('click', () => {
             tempQuestObject.questKeywords.push((String(document.querySelector('.js-quest-keyword-input').value)).toLowerCase());
@@ -785,8 +798,6 @@ function generateQuestCreator(){
             objectiveArray = [];
             tempQuestObject.questKeywords = [];
         });
-
-
     };
 };
 
@@ -815,7 +826,7 @@ function generateDeleteQuests(){
                         <button class="delete-quest-button js-delete-quest-button">Delete</button>
                     </div>
                     <div class="delete-selection-body">
-                        <div class="delete-section-image-container">
+                        <div class="delete-section-image-container js-delete-section-image-container">
                             <img src="images/BlankUserImage.png" alt="">
                         </div>
 
@@ -859,8 +870,10 @@ function generateDeleteQuests(){
     function InitializingDeleteSection(){
         const deleteIdSelector = document.querySelector(".js-quest-id-selection");
         const deleteTitleDisplay = document.querySelector(".js-delete-title-display");
+        const deleteImageDisplay = document.querySelector(".js-delete-section-image-container");
         
         let optionsHTML = '';
+        let selectedDeleteImage = '';
         let selectedIdValue = '';
         let selectedTitleText = '';
         let questTypeSelection = '';
@@ -877,11 +890,15 @@ function generateDeleteQuests(){
 
         questArray.forEach((selectObjectItem) => {
 
-            if(selectObjectItem.questId === questIdUrlParams){
-                    selectedIdValue = selectObjectItem.questId;
-                    selectedTitleText = selectObjectItem.questTitle;
-                    questTypeSelection = selectObjectItem.questType;        
-            }
+            if(selectObjectItem.questId === questIdUrlParams){   
+                if(selectObjectItem.questImage !== "Pending"){
+                    console.log(selectObjectItem.questImage !== "Pending");
+                    selectedDeleteImage = `<img src="${selectObjectItem.questImage}" alt=""></img>`;
+                }       
+                selectedIdValue = selectObjectItem.questId;
+                selectedTitleText = selectObjectItem.questTitle;
+                questTypeSelection = selectObjectItem.questType;        
+        }
             optionsHTML += `
                 <option value="${selectObjectItem.questId}">${selectObjectItem.questId}</option>
             `;
@@ -890,6 +907,7 @@ function generateDeleteQuests(){
         deleteIdSelector.innerHTML = optionsHTML;
         deleteIdSelector.value = selectedIdValue;
         deleteTitleDisplay.innerHTML = selectedTitleText;
+        deleteImageDisplay.innerHTML = selectedDeleteImage;
         // document.querySelector(`.js-${questTypeSelection}-array-button`).style.backgroundColor = '#89cfc7';
     };
 
@@ -900,7 +918,7 @@ function generateDeleteQuests(){
         const collectableArraySelector = document.querySelector('.js-collectable-array-button');
         const deleteIdSelector = document.querySelector(".js-quest-id-selection");
         const deleteTitleDisplay = document.querySelector(".js-delete-title-display");
-
+        const deleteImageDisplay = document.querySelector(".js-delete-section-image-container");
         
         function editDeletionSectionInfo(){
             let optionsHTML = '';
@@ -913,6 +931,7 @@ function generateDeleteQuests(){
 
                 if(!confirmNewTitle){
                     deleteTitleDisplay.innerHTML = selectObjectItem.questTitle; 
+                    deleteImageDisplay.innerHTML = `<img src="${selectObjectItem.questImage}" alt=""></img>`;
                     confirmNewTitle = true; 
                 }
 
@@ -941,6 +960,14 @@ function generateDeleteQuests(){
             questArray.forEach((selectedQuestType) => {
                 if(deleteIdSelector.value === selectedQuestType.questId){
                     deleteTitleDisplay.innerHTML = selectedQuestType.questTitle;
+
+                    if(selectedQuestType.questImage !== "Pending"){
+                        console.log(selectObjectItem.questImage !== "Pending");
+                        deleteImageDisplay.innerHTML = `<img src="${selectedQuestType.questImage}" alt="">`;
+                    }else{
+                        deleteImageDisplay.innerHTML = '<img src="images/BlankUserImage.png" alt="">';
+                    }
+
                 }
             });
         }); 
@@ -1123,8 +1150,635 @@ function generateDeleteQuests(){
 
 };
 
-function generateUpdateQuest(){v
+function generateUpdateQuest(){
+    const questPageBody = document.querySelector('.js-quests-body-main');
+    let updateHTML = '';
 
+    updateHTML=`
+        <div class="update-quest-data-controller">
+            <div class="update-quest-data-header">
+                <div class="data-control-title">Quest Data Controls</div>
+                <div class="update-delete-switch-container">
+                    <select name="" id="" class="update-delete-switch">
+                        <option value="Update">Update Quest</option>
+                        <option value="Delete">Delete Quest</option>
+                    </select>
+                    <button class="exit-quest-controls js-exit-quest-controls">❌</button>
+                </div>
+            </div>
+            <div class="update-quest-data-body">
+                <div class="quest-body-title-container">
+                    <div class="update-quest-title">Update Quest</div>
+                    <button class="update-quest-button js-update-quest-button">Update</button>
+                </div>
+                <div class="quest-body-data-container">
+                    <div class="quest-update-selector">
+                        <div class="quest-update-title-selection js-quest-update-title-selection">
+                            <label for="updateTitleQuestSelector">Quest Title:</label>
+                            <select id="updateTitleQuestSelector" class="update-title-quest-selector js-update-title-quest-selector">
+                            </select>
+                        </div>
+                        <div class="quest-update-id-selection js-quest-update-id-selection">
+                            <label for="updateIdQuestSelector">Quest Id:</label>
+                            <select id="updateIdQuestSelector" class="update-id-quest-selector js-update-id-quest-selector">
+                            </select>
+                        </div>
+                        <div class="update-quest-type-selection">
+                            <label for="questUpdateTypeSelection">Type:</label>
+                            <div class="quest-update-type-selection" id="questUpdateTypeSelection">
+                                <button class="main-quest-button js-main-array-button"><div>💼</div></button>
+                                <button class="side-quest-button js-side-array-button"><div>🔷</div></button>
+                                <button class="errand-list-button js-errand-array-button"><div>🛍️</div></button>
+                                <button class="collectable-list-button js-collectable-array-button"><div>⭐</div></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="update-detail-section js-update-detail-section">
+
+                    </div>
+                    <div class="update-keywords-section js-update-keywords-section">
+
+                    </div>
+                    <div class="update-imaging-section js-update-imaging-section">
+
+                    </div>
+                </div>
+            </div>
+        </div>    
+    `;
+
+    questPageBody.innerHTML = updateHTML;
+
+    function initializingUpdateSection(){
+        const updateTitleInput = document.querySelector('.js-update-title-quest-selector');
+        const updateIdInput = document.querySelector('.js-update-id-quest-selector');
+        const updatedDetailSection = document.querySelector('.js-update-detail-section');
+        const updatedKeywordsSection = document.querySelector('.js-update-keywords-section');
+        const updateImagingSection = document.querySelector('.js-update-imaging-section');
+        const exitUpdatesButton = document.querySelector(".js-exit-quest-controls");
+
+        let updateTitleHTML = '';
+        let updateIdHTML = '';
+
+        let updateDetailSectionHTML = '';
+        let updateKeywordsSectionHTML = '';
+        let updateImagingSectionHTML = '';
+
+        let oneRunQuestLog = true;
+
+        exitUpdatesButton.addEventListener('click', () => {
+            window.location.href = "quest.html";
+        });
+
+        questArray.forEach((questObject) => {
+            updateTitleHTML+=`<option value="${questObject.questTitle}">${questObject.questTitle}</option>`;
+            updateIdHTML+=`<option value="${questObject.questId}">${questObject.questId}</option>`;
+
+            if(questObject.questId === questIdUrlParams){
+                updateDetailSectionHTML = `
+                    <div class="update-quest-details-container">
+                        <label for="updateQuestDetailInput">Quest Details:</label>
+                        <textarea id="updateQuestDetailInput" class="update-quest-detail-input js-update-quest-detail-input">${questObject.questDetails}</textarea>
+                    </div>
+                    <div class="quest-category-update-container">
+                        <label for="questCategoryUpdateInput">Quest Category:</label>
+                        <input type="text" id="questCategoryUpdateInput" class="quest-category-update-input js-quest-category-update-input" value="${questObject.questCategory}">
+                    </div>
+                    <div class="update-objectives-controls">
+                        <label for="updateQuestObjectivesInput">Update Objectives:</label>
+                        <div class="update-objective-body">
+                            <div class="update-objectives-input-container">
+                                <input type="text" id="updateQuestObjectivesInput" class="update-quest-objectives-input js-update-quest-objectives-input">
+                                <select id="objectivesIndexSelector" class="objectives-index-selector js-objectives-index-selector">
+                                </select>
+                            </div>
+                            <div class="update-objective-button-container">
+                                <button class="delete-objective-button js-delete-objective-button">🗑️</button>
+                                <button class="objectives-submit-update-button js-objectives-submit-update-button">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quest-update-progress-container">
+                        <label for="updateQuestProgressInput">Quest Progress:</label>
+                        <input type="range" min="0" max="100" value="${questObject.questProgress}" id="updateQuestProgressInput" class="update-quest-progress-input js-update-quest-progress-input">
+                    </div>
+                    <div class="requirements-active-check-container">
+                        <div class="active-quests-checkbox-container">
+                            <label for="activeQuestsCheckbox">Active Quest:</label>
+                            <input type="checkbox" id="activeQuestsCheckbox" class="active-quests-checkbox-update js-active-quests-checkbox-update" checked="${questObject.isActive}">
+                        </div>
+                        <div class="quests-requirements-checkbox-container">
+                            <label for="questsRequirementsCheckbox">Requirements Quest:</label>
+                            <input type="checkbox" id="questsRequirementsCheckbox" class="quests-requirements-checkbox-update js-quests-requirements-checkbox-update" checked="${questObject.requirementsChecked}">
+                        </div>
+                    </div>
+                `;
+                updateKeywordsSectionHTML = `
+                    <div class="quest-experience-update-control">
+                        <label for="questExperienceUpdateInput">Experience:</label>
+                        <input type="number" id="questExperienceUpdateInput" class="quest-experience-update-input js-quest-experience-update-input" value="${questObject.questExperience}">
+                    </div>
+                    <div class="quest-rank-updater">
+                        <label for="rankSelectInput">Select Rank:</label>
+                        <select id="rankSelectInput" class="rank-select-input js-rank-select-input">
+                            <option value="S">S</option>
+                            <option value="A+">A+</option>
+                            <option value="A">A</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B" selected>B</option>
+                            <option value="B-">B-</option>
+                            <option value="C+">C+</option>
+                            <option value="C">C</option>
+                            <option value="C-">C-</option>
+                            <option value="D+">D+</option>
+                            <option value="D">D</option>
+                            <option value="D-">D-</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                    <div class="update-quest-keywords-section">
+                        <label for="updateKeywordsInput">Update Keywords:</label>
+                        <div class="keywords-update-body-section">
+                            <div class="keyword-count-container">
+                                <input type="text" id="updateKeywordsInput" class="update-keywords-input js-update-keywords-input">
+                                <select class="update-keywords-index-selector">
+
+                                </select>
+                            </div>
+                            <div class="update-keywords-button-container">
+                                <button class="delete-keyword-button js-delete-keyword-button">🗑️</button>
+                                <button class="submit-keyword-button js-submit-keyword-button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                updateImagingSectionHTML = `
+                    <div class="requirements-update-section">
+                        <label for="requirementsQuestUpdateInput">Quest Requirements:</label>
+                        <input type="text" id="requirementsQuestUpdateInput" class="requirements-quest-update-input js-requirements-quest-update-input" value="${questObject.questRequirements}">
+                    </div>
+                    <div class="image-update-container">
+                        <label for="imageUpdateSelection">Quest Image:</label>
+                        <select id="imageUpdateSelection" class="image-update-selection js-image-update-selection">
+                            ${generateImageSelection()}
+                        </select>
+                    </div>
+                    <div class="update-briefing-link-container">
+                        <label for="updateBriefingLinkSelector">Quest Briefing:</label>
+                        <select id="updateBriefingLinkSelector" class="update-briefing-link-selector js-update-briefing-link-selector">
+                            <option value="pending" default>Select from availiable options</option>
+                        </select>
+                    </div>                
+                `;
+            };
+            if(oneRunQuestLog){
+                let keywordIndexCount = 0;
+
+                questObject.questKeywords.forEach((questObjectKeywords) => {
+                    keywordIndexCount++;
+                });
+
+                oneRunQuestLog = false;
+            };
+        });
+
+        function generateImageSelection(){
+            let imageLinkHTML = '<option value="pending" default>Select from availiable options</option>';
+            questImageIcons.forEach((imagePathString) => {
+                imageLinkHTML += `<option value="${imagePathString}" default>${imagePathString}</option>`;
+            });
+            return imageLinkHTML;
+        }
+
+        updateTitleInput.innerHTML = updateTitleHTML;
+        updateIdInput.innerHTML = updateIdHTML;
+
+        updatedDetailSection.innerHTML = updateDetailSectionHTML;
+        updatedKeywordsSection.innerHTML = updateKeywordsSectionHTML;
+        updateImagingSection.innerHTML = updateImagingSectionHTML;
+
+        questArray.forEach((questObject) => {
+            if(questObject.questId === questIdUrlParams){
+                const questObjectivesSelector = document.querySelector('.js-objectives-index-selector');
+                const questObjectiveTitleInput = document.querySelector('.js-update-quest-objectives-input');
+                const questKeywordsSelector = document.querySelector('.update-keywords-index-selector');
+                const questKeywordInput = document.querySelector('.js-update-keywords-input');
+                const questImageSelector = document.querySelector('.js-image-update-selection');
+
+                let objectiveIndexCount = 0;
+                let keywordsIndexCount = 0;
+
+                questObject.questObjectives.forEach((seletedQuestObjective) => {
+                    questObjectivesSelector.innerHTML += `<option value="${objectiveIndexCount}">${objectiveIndexCount}</option>`;
+                    objectiveIndexCount += 1;
+                    questObjectiveTitleInput.value = seletedQuestObjective.objectivesTitle;
+                });
+                questObjectivesSelector.innerHTML += `<option value="${questObject.questObjectives.length}">${questObject.questObjectives.length}</option>`;
+                questObjectivesSelector.value = (questObject.questObjectives.length) - 1;
+
+                questObject.questKeywords.forEach((questSearchKeyword) => {
+                    questKeywordsSelector.innerHTML += `<option value="${keywordsIndexCount}">${keywordsIndexCount}</option>`;
+                    keywordsIndexCount += 1;
+                    questKeywordInput.value = questSearchKeyword;
+                });
+                questKeywordsSelector.innerHTML += `<option value="${questObject.questKeywords.length}">${questObject.questKeywords.length}</option>`;
+                questKeywordsSelector.value = (questObject.questKeywords.length) - 1;
+                
+
+                questImageSelector.value = questObject.questImage;
+            }
+        });
+
+        oneRunQuestLog = true;
+    };
+
+    function questUpdateControls(){
+        const questTitleSelector = document.querySelector('.js-update-title-quest-selector');
+        const questIdSelector = document.querySelector('.js-update-id-quest-selector');
+        const questDetailInput = document.querySelector('.js-update-quest-detail-input');
+        const questCategoryInput = document.querySelector('.js-quest-category-update-input');
+        const questProgressInput = document.querySelector('.js-update-quest-progress-input');
+        const questActiveCheckbox = document.querySelector('.js-active-quests-checkbox-update');
+        const questRequirementsCheckbox = document.querySelector('.js-quests-requirements-checkbox-update');
+        const questExperienceInput = document.querySelector('.js-quest-experience-update-input');
+        const questRankSelectInput = document.querySelector('.js-rank-select-input');
+        const questRequirementsInput = document.querySelector('.js-requirements-quest-update-input');
+        const questImageSelector = document.querySelector('.js-image-update-selection');
+        const questBriefingLink = document.querySelector('.js-update-briefing-link-selector');
+
+        
+        const questObjectivesSelector = document.querySelector('.js-objectives-index-selector');
+        const questObjectiveTitleInput = document.querySelector('.js-update-quest-objectives-input');
+        const deleteUpdateObjectivesButton = document.querySelector('.js-delete-objective-button');
+        const submitObjectiveButton = document.querySelector('.js-objectives-submit-update-button');
+
+        const questKeywordsSelector = document.querySelector('.update-keywords-index-selector');
+        const questKeywordInput = document.querySelector('.js-update-keywords-input');
+        const deleteUpdateKeywordsButton = document.querySelector('.js-delete-keyword-button');
+        const submitKeywordButton = document.querySelector('.js-submit-keyword-button');
+
+        const questUpdateButton = document.querySelector('.js-update-quest-button');
+
+        const questTypeMainButton = document.querySelector('.js-main-array-button');
+        const questTypeSideButton = document.querySelector('.js-side-array-button');
+        const questTypeErrandButton = document.querySelector('.js-errand-array-button');
+        const questTypeCollectableButton = document.querySelector('.js-collectable-array-button');
+
+        function updateInputInfo(selectObjectUpdate){
+            let objectiveIndexCount = 0;
+            let keywordsIndexCount = 0;
+
+            questObjectivesSelector.innerHTML = '';
+            questKeywordsSelector.innerHTML = '';
+
+            questTitleSelector.value = selectObjectUpdate.questTitle;
+            questIdSelector.value = selectObjectUpdate.questId;
+            questDetailInput.value = selectObjectUpdate.questDetails;
+            questCategoryInput.value = selectObjectUpdate.questCategory;
+            questProgressInput.value = selectObjectUpdate.questProgress;
+            questActiveCheckbox.checked = selectObjectUpdate.isActive;
+            questRequirementsCheckbox.checked = selectObjectUpdate.requirementsChecked;
+            questExperienceInput.value = selectObjectUpdate.questExperience;
+            questRankSelectInput.value = selectObjectUpdate.questRank;
+            questRequirementsInput.value = selectObjectUpdate.questRequirements;
+            questImageSelector.value = selectObjectUpdate.questImage;
+
+            selectObjectUpdate.questObjectives.forEach((seletedQuestObjective) => {
+                questObjectivesSelector.innerHTML += `<option value="${objectiveIndexCount}">${objectiveIndexCount}</option>`;
+                objectiveIndexCount += 1;
+                questObjectiveTitleInput.value = seletedQuestObjective
+            });
+
+            selectObjectUpdate.questKeywords.forEach((questSearchKeyword) => {
+                questKeywordsSelector.innerHTML += `<option value="${keywordsIndexCount}">${keywordsIndexCount}</option>`;
+                keywordsIndexCount += 1;
+                questKeywordInput.value = questSearchKeyword;
+            });
+
+        };
+
+        questTitleSelector.addEventListener('click', () => {
+            questArray.forEach((selectObjectUpdate) => {
+                if(questTitleSelector.value === selectObjectUpdate.questTitle){
+                    updateInputInfo(selectObjectUpdate);
+                };
+            });
+        });
+
+        questIdSelector.addEventListener('click', () => {
+            questArray.forEach((selectObjectUpdate) => {
+                if(questIdSelector.value === selectObjectUpdate.questId){
+                    updateInputInfo(selectObjectUpdate);
+                };
+            });
+        });
+
+        questTypeMainButton.addEventListener('click', () => {
+            questArray = mainQuests;
+            questTitleSelector.innerHTML = '';
+            questIdSelector.innerHTML = '';
+            questArray.forEach((selectObjectUpdate) => {
+                questTitleSelector.innerHTML += `<option value="${selectObjectUpdate.questTitle}">${selectObjectUpdate.questTitle}</option>`;
+                questIdSelector.innerHTML += `<option value="${selectObjectUpdate.questId}">${selectObjectUpdate.questId}</option>`;
+            });
+        });
+        
+        questTypeSideButton.addEventListener('click', () => {
+            questArray = sideQuests;
+            questTitleSelector.innerHTML = '';
+            questIdSelector.innerHTML = '';
+            questArray.forEach((selectObjectUpdate) => {
+                questTitleSelector.innerHTML += `<option value="${selectObjectUpdate.questTitle}">${selectObjectUpdate.questTitle}</option>`;
+                questIdSelector.innerHTML += `<option value="${selectObjectUpdate.questId}">${selectObjectUpdate.questId}</option>`;
+            });
+        });
+
+        questTypeErrandButton.addEventListener('click', () => {
+            questArray = errandsList;
+            questTitleSelector.innerHTML = '';
+            questIdSelector.innerHTML = '';
+            questArray.forEach((selectObjectUpdate) => {
+                questTitleSelector.innerHTML += `<option value="${selectObjectUpdate.questTitle}">${selectObjectUpdate.questTitle}</option>`;
+                questIdSelector.innerHTML += `<option value="${selectObjectUpdate.questId}">${selectObjectUpdate.questId}</option>`;
+            });
+        });
+
+        questTypeCollectableButton.addEventListener('click', () => {
+            questArray = collectablesList;
+            questTitleSelector.innerHTML = '';
+            questIdSelector.innerHTML = '';
+            questArray.forEach((selectObjectUpdate) => {
+                questTitleSelector.innerHTML += `<option value="${selectObjectUpdate.questTitle}">${selectObjectUpdate.questTitle}</option>`;
+                questIdSelector.innerHTML += `<option value="${selectObjectUpdate.questId}">${selectObjectUpdate.questId}</option>`;
+            });
+        });
+
+
+
+        questObjectivesSelector.addEventListener('click', () => {
+            questArray.forEach((questObject) => {
+                if(questObject.questId === questIdSelector.value){
+                    let objectiveIndexCount = 0;
+                    questObject.questObjectives.forEach((selectedObjective) => {
+                        if( questObject.questObjectives.length <= Number(questObjectivesSelector.value)){
+                            questObjectiveTitleInput.value = 'Add a new objective +';
+                        }else if(Number(questObjectivesSelector.value) === objectiveIndexCount ){
+                            questObjectiveTitleInput.value = selectedObjective.objectivesTitle;
+                        };
+                        objectiveIndexCount += 1;
+                    });
+
+                }
+            });
+        });
+
+        deleteUpdateObjectivesButton.addEventListener('click', () => {
+            questArray.forEach((selectObjectUpdate) => {
+                if(questIdSelector.value === selectObjectUpdate.questId && selectObjectUpdate.questObjectives.length > 1){
+                    let tempObjectivesArray = [];
+                    let objectiveIndexCount = 0; 
+
+                    selectObjectUpdate.questObjectives.forEach((selectedObjective) => {
+                        let tempUpdateObjectives = {};
+
+                        console.log(questObjectiveTitleInput.value === selectedObjective.objectivesTitle);
+
+                        if(questObjectiveTitleInput.value === selectedObjective.objectivesTitle){
+                            console.log(selectedObjective);
+                        }else{
+                            function handleObjectiveCount(){
+                                let count = 'first';
+
+                                if(tempUpdateObjectives.length === 1){
+                                    count = 'second';
+                                }else if(tempUpdateObjectives.length === 2){
+                                    count = 'third';
+                                }else if(tempUpdateObjectives.length === 3){
+                                    count = 'fourth';
+                                }else if(tempUpdateObjectives.length === 4){
+                                    count = 'fifth';
+                                }else if(tempUpdateObjectives.length === 5){
+                                    count = 'sixth';
+                                }else if(tempUpdateObjectives.length === 6){
+                                    count = 'seventh';
+                                }else if(tempUpdateObjectives.length === 7){
+                                    count = 'eighth';
+                                }else if(tempUpdateObjectives.length === 8){
+                                    count = 'ninth';
+                                }else if(tempUpdateObjectives.length === 9){
+                                    count = 'tenth';
+                                }else if(tempUpdateObjectives.length === 10){
+                                    count = 'eleventh';
+                                }else if(tempUpdateObjectives.length === 11){
+                                    count = 'twelfth';
+                                }
+
+                                return count;
+                            };
+
+                            tempUpdateObjectives.objectivesId = `${selectObjectUpdate.questId}-${handleObjectiveCount()}-objective`;
+                            tempUpdateObjectives.objectivesTitle = selectedObjective.objectivesTitle;
+                            tempUpdateObjectives.completed = false;
+
+                            tempObjectivesArray.push(tempUpdateObjectives);
+                        };
+                    });
+
+                    selectObjectUpdate.questObjectives = structuredClone(tempObjectivesArray);
+
+                    questObjectivesSelector.innerHTML = '';
+                    
+                    selectObjectUpdate.questObjectives.forEach((seletedQuestObjective) => {
+                        questObjectivesSelector.innerHTML += `<option value="${objectiveIndexCount}">${objectiveIndexCount}</option>`;
+                        objectiveIndexCount += 1;
+                        questObjectiveTitleInput.value = seletedQuestObjective.objectivesTitle;
+                    });
+
+                    questObjectivesSelector.innerHTML += `<option value="${selectObjectUpdate.questObjectives.length}">${selectObjectUpdate.questObjectives.length}</option>`;
+                    questObjectivesSelector.value = (selectObjectUpdate.questObjectives.length) - 1;
+
+                };
+            });
+        });
+
+        submitObjectiveButton.addEventListener('click', () => {
+            questArray.forEach((questObjectiveObject) => {
+                if(questObjectiveObject.questId === questIdSelector.value){
+                    let objectiveIndexCount = 0;
+                    let indexObjectiveAmount = (questObjectiveObject.questObjectives.length) - 1;
+                    let tempObjectiveObject = {};
+
+                    if(questObjectiveObject.questObjectives.length <= questObjectivesSelector.value && indexObjectiveAmount < 11){
+                        
+                        console.log(questObjectiveObject.questObjectives);
+
+                        function handleObjectiveCount(){
+                            let count = 'first';
+
+                            if(questObjectiveObject.questObjectives.length === 1){
+                                count = 'second';
+                            }else if(questObjectiveObject.questObjectives.length === 2){
+                                count = 'third';
+                            }else if(questObjectiveObject.questObjectives.length === 3){
+                                count = 'fourth';
+                            }else if(questObjectiveObject.questObjectives.length === 4){
+                                count = 'fifth';
+                            }else if(questObjectiveObject.questObjectives.length === 5){
+                                count = 'sixth';
+                            }else if(questObjectiveObject.questObjectives.length === 6){
+                                count = 'seventh';
+                            }else if(questObjectiveObject.questObjectives.length === 7){
+                                count = 'eighth';
+                            }else if(questObjectiveObject.questObjectives.length === 8){
+                                count = 'ninth';
+                            }else if(questObjectiveObject.questObjectives.length === 9){
+                                count = 'tenth';
+                            }else if(questObjectiveObject.questObjectives.length === 10){
+                                count = 'eleventh';
+                            }else if(questObjectiveObject.questObjectives.length === 11){
+                                count = 'twelfth';
+                            }
+
+                            return count;
+                        };
+
+                        tempObjectiveObject.objectivesId = `${questObjectiveObject.questId}-${handleObjectiveCount()}-objective`;
+                        tempObjectiveObject.objectivesTitle = questObjectiveTitleInput.value;
+                        tempObjectiveObject.completed = false;
+
+                        questObjectiveObject.questObjectives.push(structuredClone(tempObjectiveObject)) ;
+
+                        questObjectivesSelector.innerHTML = '';
+                    
+                        questObjectiveObject.questObjectives.forEach((seletedQuestObjective) => {
+                            questObjectivesSelector.innerHTML += `<option value="${objectiveIndexCount}">${objectiveIndexCount}</option>`;
+                            objectiveIndexCount += 1;
+                            questObjectiveTitleInput.value = seletedQuestObjective.objectivesTitle;
+                        });
+
+                        questObjectivesSelector.innerHTML += `<option value="${questObjectiveObject.questObjectives.length}">${questObjectiveObject.questObjectives.length}</option>`;
+                        questObjectivesSelector.value = (questObjectiveObject.questObjectives.length) - 1;
+                    }else if(questObjectiveObject.questObjectives.length > questObjectivesSelector.value){
+                        questObjectiveObject.questObjectives[indexObjectiveAmount].objectivesTitle = questObjectiveTitleInput.value;
+                    }else{
+                        window.alert('Error: You cannot have more the 12 objectives per quest!!!')
+                    };
+
+                    console.log(questObjectiveObject.questObjectives);
+                };
+            });
+        });
+
+        questKeywordsSelector.addEventListener('click', () => {
+            questArray.forEach((questObject) => {
+                if(questIdSelector.value === questObject.questId ){
+                    let keywordIndexCount = 0;
+                    questObject.questKeywords.forEach((selectedKeyword) => {
+                        if(questObject.questKeywords.length <= Number(questKeywordsSelector.value)){
+                            questKeywordInput.value = 'word +';
+                        }else if(Number(questKeywordsSelector.value) === keywordIndexCount && questObject.questKeywords.length > Number(questKeywordsSelector.value)){
+                            questKeywordInput.value = selectedKeyword;
+                        };
+                        keywordIndexCount+=1;
+                    });
+                }
+            });
+        });
+
+        deleteUpdateKeywordsButton.addEventListener('click', () => {
+            questArray.forEach((selectObjectUpdate) => {
+                if(questIdSelector.value === selectObjectUpdate.questId && selectObjectUpdate.questKeywords.length > 1){
+                    let tempKeywordArray = [];
+                    selectObjectUpdate.questKeywords.forEach((selectedKeyword) => {
+                        if(questKeywordInput.value === selectedKeyword){
+                            console.log(selectedKeyword);
+                        }else{
+                            tempKeywordArray.push(selectedKeyword);
+                        }
+                    });
+                    selectObjectUpdate.questKeywords = structuredClone(tempKeywordArray);
+                    updateInputInfo(selectObjectUpdate);
+                    questKeywordsSelector.innerHTML += `<option value="${selectObjectUpdate.questKeywords.length}">${selectObjectUpdate.questKeywords.length}</option>`;
+                    questKeywordsSelector.value = (selectObjectUpdate.questKeywords.length) - 1;
+                };
+            });
+        }); 
+
+        submitKeywordButton.addEventListener('click', () => {
+            questArray.forEach((questKeywordyObject) => {
+                if(questKeywordyObject.questId === questIdSelector.value){
+                    let keywordsIndexCount = 0;
+                    let indexKeywordAmount = (questKeywordyObject.questKeywords.length) -1;
+                    console.log(questKeywordyObject.questKeywords);
+                    if(questKeywordsSelector.value >indexKeywordAmount){
+                        questKeywordyObject.questKeywords.push(questKeywordInput.value);
+                        questKeywordsSelector.innerHTML = '';
+
+                        questKeywordyObject.questKeywords.forEach((questSearchKeyword) => {
+                            questKeywordsSelector.innerHTML += `<option value="${keywordsIndexCount}">${keywordsIndexCount}</option>`;
+                            keywordsIndexCount += 1;
+                            questKeywordInput.value = questSearchKeyword;
+                        });
+
+                        questKeywordsSelector.innerHTML += `<option value="${questKeywordyObject.questKeywords.length}">${questKeywordyObject.questKeywords.length}</option>`;
+                        questKeywordsSelector.value = (questKeywordyObject.questKeywords.length) - 1;
+                        
+                    }else{
+                        questKeywordyObject.questKeywords[questKeywordsSelector.value] = questKeywordInput.value;
+                    };
+                    console.log(questKeywordyObject.questKeywords);
+                };
+            });
+        });
+
+
+
+
+        questUpdateButton.addEventListener('click', () => {
+            let questUpdatedObject = {};
+
+            function createNewObject(){
+                questArray.forEach((questUpdationObject) => {
+                    if(questUpdationObject.questId === questIdSelector.value){
+                        console.log(questUpdatedObject);
+
+
+                        questUpdatedObject.questId = questIdSelector.value;
+                        questUpdatedObject.questType = questUpdationObject.questType;
+                        questUpdatedObject.questCategory = questCategoryInput.value;
+                        questUpdatedObject.questTitle = questTitleSelector.value;
+                        questUpdatedObject.questDetails = questDetailInput.value;
+                        questUpdatedObject.questProgress = questProgressInput.value;
+                        questUpdatedObject.questExperience = questExperienceInput.value;
+                        questUpdatedObject.questRank = questRankSelectInput.value;
+                        questUpdatedObject.questImage = questImageSelector.value;
+                        questUpdatedObject.questRequirements = questRequirementsInput.value;
+                        questUpdatedObject.questObjectives = questUpdationObject.questObjectives;
+                        questUpdatedObject.questKeywords = questUpdationObject.questKeywords;
+                        questUpdatedObject.briefingLink = questBriefingLink.value;
+                        questUpdatedObject.isComplete = questUpdationObject.isComplete;
+                        questUpdatedObject.isActive = questActiveCheckbox.value;
+                        questUpdatedObject.requirementsChecked = questRequirementsCheckbox.value;
+
+
+                        questUpdationObject = structuredClone(questUpdatedObject)
+                        console.log(questUpdationObject);
+                        console.log('first step');
+                    };
+                });
+            };
+
+            createNewObject();
+
+            console.log(questUpdatedObject);
+            console.log(questArray);
+        });
+
+    };
+
+    initializingUpdateSection();
+    questUpdateControls();
 };
 
 function controlQuestPage(){
@@ -1137,6 +1791,8 @@ function controlQuestPage(){
         });
     }else if(deleteUrlParams){
         generateDeleteQuests();
+    }else if(updateUrlParams){
+        generateUpdateQuest();
     }else{
         questArray.forEach((thisObject) => {
 
@@ -1226,7 +1882,5 @@ function toggleActiveState(){
     };
 };
 
-
 generateQuestLog();
-
 controlQuestPage();

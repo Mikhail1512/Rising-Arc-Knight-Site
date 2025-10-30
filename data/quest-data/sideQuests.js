@@ -9,7 +9,7 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questProgress: 0,
         questExperience: 320,
         questRank: 'C+',
-        questImage: 'Pending',
+        questImage: 'images/GameDrawnIcon.jpg',
         questRequirements: 'Laptop, stationary, paper and time',
         questObjectives:[
             {
@@ -59,7 +59,7 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questProgress: 0,
         questExperience: 240,
         questRank: 'A-',
-        questImage: 'Pending',
+        questImage: 'images/VideoEditingIcon.png',
         questRequirements: 'Laptop, Software and time',
         questObjectives:[
             {
@@ -108,7 +108,7 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questProgress: 0,
         questExperience: 300,
         questRank: 'B+',
-        questImage: 'Pending',
+        questImage: 'images/ScrollQuestIcon.jpg',
         questRequirements: 'Laptop, pecil, ideas page , writing system and time',
         questObjectives:[
             {
@@ -159,7 +159,7 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questProgress: 0,
         questExperience: 100,
         questRank: 'C+',
-        questImage: 'Pending',
+        questImage: 'images/OpenBookIcon.jpg',
         questRequirements: 'Laptop, Books, Quran and time',
         questObjectives:[
             {
@@ -205,11 +205,11 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questType: 'side',
         questCategory: 'Wood Working',
         questTitle: 'Craft a strong Chair',
-        questDetails:'Sa=pend some time designing and creating a chair make of wood design it so you can easily move it around and make it rust proof. The joint make all be made out of wood.',
+        questDetails:'Spend some time designing and creating a chair make of wood design it so you can easily move it around and make it rust proof. The joint make all be made out of wood.',
         questProgress: 0,
         questExperience: 230,
-        questRank: 'A',
-        questImage: 'Pending',
+        questRank: 'C',
+        questImage: 'images/AxeAndSaw.png',
         questRequirements: 'Laptop, tools, material, money and time',
         questObjectives:[
             {
@@ -240,10 +240,7 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         ],
         questKeywords: [
             'woodwork',
-            '',
-            'gaming',
             'assets',
-            'animating',
             'creation',
             'learning' 
         ],
@@ -251,5 +248,269 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         isComplete: false,
         isActive: false,
         requirementsChecked: true,
-    }
+    },
+    { 
+        questId:'02-side-research-rune-technology',
+        questType: 'side',
+        questCategory: 'Game Design',
+        questTitle: 'Research Rune Tech',
+        questDetails:'Do research on old school nordic runes to turn it into a power system for a world. Then try to draw designs for armor, weapons and tools.',
+        questProgress: 0,
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/ScrollQuestIcon.jpg',
+        questRequirements: 'Laptop, time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-research-rune-technology-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-third-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'runes',
+            'technology',
+            'system',
+            'magic',
+            'creation',
+            'learning' 
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'02-side-draw-a-perfect-skull',
+        questType: 'side',
+        questCategory: 'Drawing and Shading',
+        questTitle: 'Draw a Skull',
+        questDetails:'Try to draw a skull with proper shading, line work, preportions and more.',
+        questProgress: 0,
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/GameDrawnIcon.jpg',
+        questRequirements: 'Laptop, time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-research-rune-technology-first-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-second-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-third-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-fourth-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-research-rune-technology-fifth-objective',
+                objectivesTitle:'',
+                completed: true
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'runes',
+            'technology',
+            'system',
+            'magic',
+            'creation',
+            'learning' 
+        ],
+        briefingLink: 'Pending',
+        isComplete: true,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'02-side-make-a-netherscape-map',
+        questType: 'side',
+        questCategory: 'Drawing and Shading', 
+        questTitle: 'Make a Netherscape',
+        questDetails:'Try to draw a Netherscape Map with proper shading, line work, preportions and layers.',
+        questProgress: 0,
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/MapAndLocationIcon.png',
+        questRequirements: 'Laptop, time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-make-a-netherscape-map-first-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-second-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-third-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-fourth-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-fifth-objective',
+                objectivesTitle:'',
+                completed: true
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'runes',
+            'terrain',
+            'landscape',
+            'ground',
+            'map',
+            'layers', 
+            'volcano'
+        ],
+        briefingLink: 'Pending',
+        isComplete: true,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {  
+        questId:'02-side-make-a-godot-shump',
+        questType: 'side',
+        questCategory: 'Drawing and Shading', 
+        questTitle: 'Make a Godot Shump',
+        questDetails:'Try to remake the godot pico 8 shump in godot try using assests and sounds to speed process',
+        questProgress: 0,
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/GameControllerIcon.webp',
+        questRequirements: 'Laptop, time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-make-a-godot-shump-first-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-second-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-third-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-fourth-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-fifth-objective',
+                objectivesTitle:'',
+                completed: true
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'ground',
+            'map',
+            'layers', 
+            'shapeship',
+            'shoot',
+            'alien',
+            'planets'
+        ],
+        briefingLink: 'Pending',
+        isComplete: true,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'02-side-write-game-stories',
+        questType: 'side',
+        questCategory: 'Writing and story', 
+        questTitle: 'Write game stories',
+        questDetails:'Practice write stories and script for game as well as novels. Strategize different methods and means to build worlds. Try to make different charaters, gear and biospheres.',
+        questProgress: 0,
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/ScrollQuestIcon.jpg',
+        questRequirements: 'Laptop, time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-write-game-stories-first-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-write-game-stories-second-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-write-game-stories-third-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-write-game-stories-fourth-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-write-game-stories-fifth-objective',
+                objectivesTitle:'',
+                completed: true
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'story',
+            'system',
+            'fantasy', 
+            'beasts',
+            'magic',
+            'building',
+            'world',
+            'biosphere',
+        ],
+        briefingLink: 'Pending',
+        isComplete: true,
+        isActive: false,
+        requirementsChecked: true,
+    },
 ];

@@ -8,7 +8,7 @@ export const collectablesList = JSON.parse(localStorage.getItem('collectableList
         questProgress: 0,
         questExperience: 0,
         questRank: '7',
-        questImage: 'Pending',
+        questImage: 'images/CvQuestIcon.jpg',
         questUnlockables: 'Cross Country travel, new job oppotunities',
         questObjectives:[
             {
@@ -55,7 +55,7 @@ export const collectablesList = JSON.parse(localStorage.getItem('collectableList
         questProgress: 0,
         questExperience: 0,
         questRank: '5',
-        questImage: 'Pending',
+        questImage: 'images/MotorCycleIcon.png',
         questUnlockables: 'Cross Country travel, new job oppotunities',
         questObjectives:[
             {
@@ -102,7 +102,7 @@ export const collectablesList = JSON.parse(localStorage.getItem('collectableList
         questProgress: 0,
         questExperience: 0,
         questRank: '6',
-        questImage: 'Pending',
+        questImage: 'images/ScrollQuestIcon.jpg',
         questUnlockables: 'New job oppotunities',
         questObjectives:[
             {
@@ -149,7 +149,7 @@ export const collectablesList = JSON.parse(localStorage.getItem('collectableList
         questProgress: 0,
         questExperience: 0,
         questRank: '9',
-        questImage: 'Pending',
+        questImage: 'images/AxeAndSaw.png',
         questUnlockables: 'Wood working capabilities, survival in the wild becomes easier.',
         questObjectives:[
             {
@@ -196,7 +196,7 @@ export const collectablesList = JSON.parse(localStorage.getItem('collectableList
         questProgress: 0,
         questExperience: 0,
         questRank: '8',
-        questImage: 'Pending',
+        questImage: 'images/DumbbellSetIcon.png',
         questUnlockables: 'Increased strengh, new exercises',
         questObjectives:[
             {

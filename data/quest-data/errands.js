@@ -8,7 +8,7 @@ export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
         questProgress: 0,
         questExperience: 100,
         questRank: 'B',
-        questImage: 'Pending',
+        questImage: 'images/CvQuestIcon.jpg',
         questRequirements: 'Money, id photos, id and time',
         questObjectives:[
             {
@@ -57,7 +57,7 @@ export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
         questProgress: 0,
         questExperience: 2400,
         questRank: 'A-',
-        questImage: 'Pending',
+        questImage: 'images/CvQuestIcon.jpg',
         questRequirements: 'Laptop, Qualifications, job hunter page, personal documents  and time',
         questObjectives:[
             {
@@ -108,7 +108,7 @@ export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
         questProgress: 0,
         questExperience: 140,
         questRank: 'A',
-        questImage: 'Pending',
+        questImage: 'images/VehicleIcon.png',
         questRequirements: 'Laptop, Money, and time',
         questObjectives:[
             {
@@ -158,7 +158,7 @@ export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
         questProgress: 0,
         questExperience: 80,
         questRank: 'B',
-        questImage: 'Pending',
+        questImage: 'images/MotorCycleIcon.png',
         questRequirements: 'Laptop, tools and time',
         questObjectives:[
             {
@@ -207,7 +207,7 @@ export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
         questProgress: 0,
         questExperience: 260,
         questRank: 'A',
-        questImage: 'Pending',
+        questImage: 'images/CleaningIcon.png',
         questRequirements:  'Time',
         questObjectives:[
             {
@@ -245,5 +245,57 @@ export const errandsList = JSON.parse(localStorage.getItem('errandList')) || [
         isComplete: false,
         isActive: false,
         requirementsChecked: true,
-    }
+    },
+    {
+        questId:'03-errands-debug-the-calendar-page',
+        questType: 'errand',
+        questCategory: 'Debug and error handling',
+        questTitle: 'Debug calendar page',
+        questDetails:'Organise your room so it neat and easy to find things, also so if someone opens your cupboard you can chill.',
+        questProgress: 0,
+        questExperience: 640,
+        questRank: 'B-',
+        questImage: 'images/RepairToolsIcon.png',
+        questRequirements:  'Computer and Time',
+        questObjectives:[
+            {
+                objectivesId:'03-errands-debug-the-calendar-page-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'03-errands-debug-the-calendar-page-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'03-errands-debug-the-calendar-page-third-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'03-errands-debug-the-calendar-page-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'03-errands-debug-the-calendar-page-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'calendar',
+            'website',
+            'webpage',
+            'tasks',
+            'daily',
+            'quest',
+            'list',
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,
+    },
 ];
