@@ -9,33 +9,33 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
         questProgress: 0,
         questExperience: 1000,
         questRank: 'B+',
-        questImage: 'images/ScrollQuestIcon.jpg',
+        questImage: 'images/CvQuestIcon.jpg',
         questRequirements: 'Laptop and time',
         questObjectives:[
             {
                 objectivesId:'01-main-create-quest-page-first-objective',
                 objectivesTitle:'Design all the quest HTML',
-                completed: false
+                completed: true
             },
             {
                 objectivesId:'01-main-create-quest-page-second-objective',
                 objectivesTitle:'Style all the quest CSS',
-                completed: false
+                completed: true
             },
             {
                 objectivesId:'01-main-create-quest-page-third-objective',
                 objectivesTitle:'Generate all HTML and add functions',
-                completed: false
+                completed: true
             },
             {
                 objectivesId:'01-main-create-quest-page-fourth-objective',
                 objectivesTitle:'Save data to locale storage with quest creator',
-                completed: false
+                completed: true
             },
             {
                 objectivesId:'01-main-create-quest-page-fourth-objective',
                 objectivesTitle:'Create the backend and final designs',
-                completed: false
+                completed: true
             }
         ],
         questKeywords: [
@@ -47,7 +47,7 @@ export const mainQuests = JSON.parse(localStorage.getItem('mainQuest')) ||
             'words'
         ],
         briefingLink: 'Pending',
-        isComplete: false,
+        isComplete: true,
         isActive: false,
         requirementsChecked: true,
     },

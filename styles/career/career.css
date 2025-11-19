@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    font-size: 1.7rem;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+/* Main Section Style */
+
+main{
+    height: 549px;
+    width: 100%;
+    background-color: #d5d2d2;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+    flex-shrink: 0;
+}

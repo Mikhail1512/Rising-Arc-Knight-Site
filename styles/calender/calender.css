@@ -50,7 +50,7 @@ main{
 }
 
 .calender-date{
-    width: 220px;
+    width: 250px;
     height: 50px;
     border: 1px solid black;
     display: flex;

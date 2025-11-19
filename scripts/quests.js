@@ -40,7 +40,7 @@ function generateQuestLog(objectItem){
                 <div class="quest-menu-header">
                     <div class="quest-menu-title js-quest-menu-title">⬅️</div>
                     <div class="quest-type-title-container">
-                        <div class="quest-type-title">Active Quests</div>
+                        <div class="quest-type-title">Main Quests</div>
                         <div class="add-quest-button js-add-quest-button">Create</div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ function generateQuestLog(objectItem){
                 <div class="quest-menu-header">
                     <div class="quest-menu-title js-quest-menu-title">Quest Menu</div>
                     <div class="quest-type-title-container">
-                        <div class="quest-type-title">Active Quests</div>
+                        <div class="quest-type-title js-quest-type-title">Main Quests</div>
                         <div class="add-quest-button js-add-quest-button">Create</div>
                     </div>
 
@@ -1820,6 +1820,7 @@ function controlQuestPage(){
                 generateQuestLog(thisObject);
                 controlQuestPage();
                 toggleActiveState();
+                document.querySelector('.js-quest-type-title').innerHTML = 'Active Quests';
             });
             document.querySelector('.main-quests-selection').addEventListener('click', () => {
                 toggleQuestView = false;
@@ -1827,6 +1828,7 @@ function controlQuestPage(){
                 generateQuestLog(thisObject);
                 controlQuestPage();
                 toggleActiveState();
+                document.querySelector('.js-quest-type-title').innerHTML = 'Main Quests';
             });
             document.querySelector('.js-side-quests-selection').addEventListener('click', () => {
                 toggleQuestView = false;
@@ -1834,6 +1836,7 @@ function controlQuestPage(){
                 generateQuestLog(thisObject);
                 controlQuestPage();
                 toggleActiveState();
+                document.querySelector('.js-quest-type-title').innerHTML = 'Side Quests';
             });
             document.querySelector('.js-errands-selection').addEventListener('click', () => {
                 toggleQuestView = false;
@@ -1841,6 +1844,7 @@ function controlQuestPage(){
                 generateQuestLog(thisObject);
                 controlQuestPage();
                 toggleActiveState();
+                document.querySelector('.js-quest-type-title').innerHTML = 'Errand List';
             });
             document.querySelector('.js-collectables-selection').addEventListener('click', () => {
                 toggleQuestView = false;
@@ -1848,6 +1852,7 @@ function controlQuestPage(){
                 generateQuestLog(thisObject);
                 controlQuestPage();
                 toggleActiveState();
+                document.querySelector('.js-quest-type-title').innerHTML = 'Collectables';
             });
             document.querySelector('.js-add-quest-button').addEventListener('click', () => {
                 window.location.href = `quest.html?creatingNewQuest=${true}`;

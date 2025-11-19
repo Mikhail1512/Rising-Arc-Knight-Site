@@ -458,7 +458,7 @@ function controlEventUpdate(){
     });
 }
 
-// controlEventUpdate();
+controlEventUpdate();
 
 
 

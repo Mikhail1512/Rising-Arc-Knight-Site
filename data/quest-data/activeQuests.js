@@ -1,54 +1,5 @@
 export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
     {
-        questId:'01-main-create-quest-page',
-        questType: 'main',
-        questCategory: 'Web Learning',
-        questTitle: 'Create the Quest Page',
-        questDetails:'Create a quest page to take down everything you want to do. The purpose of this page is just to keep track of everything and not neceesarily meant for compeletion.',
-        questProgress: 0,
-        questExperience: 1000,
-        questRank: 'B+',
-        questImage: 'Pending',
-        questRequirements: 'Laptop and time',
-        questObjectives:[
-            {
-                objectivesId:'01-main-create-quest-page-first-objective',
-                objectivesTitle:'Design all the quest HTML',
-                completed: false
-            },
-            {
-                objectivesId:'01-main-create-quest-page-second-objective',
-                objectivesTitle:'Style all the quest CSS',
-                completed: false
-            },
-            {
-                objectivesId:'01-main-create-quest-page-third-objective',
-                objectivesTitle:'Generate all HTML and add functions',
-                completed: false
-            },
-            {
-                objectivesId:'01-main-create-quest-page-fourth-objective',
-                objectivesTitle:'Save data to locale storage with quest creator',
-                completed: false
-            },
-            {
-                objectivesId:'01-main-create-quest-page-fourth-objective',
-                objectivesTitle:'Create the backend and final designs',
-                completed: false
-            }
-        ],
-        questKeywords: [
-            'website',
-            'code',
-            'creation',
-            'learning' 
-        ],
-        briefingLink: 'Pending',
-        isComplete: false,
-        isActive: false,
-        requirementsChecked: true,
-    },
-    {
         questId:'01-main-go-job-hunting',
         questType: 'main',
         questCategory: 'Job Hunting',
@@ -57,7 +8,7 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         questProgress: 0,
         questExperience: 2400,
         questRank: 'A-',
-        questImage: 'Pending',
+        questImage: 'images/CvQuestIcon.jpg',
         questRequirements: 'Laptop, Qualifications, job hunter page  and time',
         questObjectives:[
             {
@@ -98,49 +49,106 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:'02-side-learn-sprite-creation',
-        questType: 'side',
+        questId:'01-main-learn-day-trading',
+        questType: 'main',
         questCategory: 'Web Learning',
-        questTitle: 'Learn to create sprites',
-        questDetails:'Practice making sprites and tileset in Aseprites for video game animations. Pratice draw these animations as well.',
+        questTitle: 'Learn Day Trading',
+        questDetails:'Learn more about day trading. Practice back testing, study market structure, learn about the fibonacci sequence and learn to calculate pips, lots size, market values and currency exchange.',
         questProgress: 0,
-        questExperience: 320,
-        questRank: 'C+',
-        questImage: 'Pending',
-        questRequirements: 'Laptop, stationary, paper and time',
+        questExperience: 3000,
+        questRank: 'A+',
+        questImage: 'images/DayTradingIcon.png',
+        questRequirements: 'Laptop and time',
         questObjectives:[
             {
-                objectivesId:'02-side-learn-sprite-creation-first-objective',
-                objectivesTitle:'Try to figure out how to draw basic to sprites.',
+                objectivesId:'01-main-learn-day-trading-first-objective',
+                objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:'02-side-learn-sprite-creation-second-objective',
-                objectivesTitle:'Draw a fires, skulls, space ships, swords and more.',
+                objectivesId:'01-main-learn-day-trading-second-objective',
+                objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:'02-side-learn-sprite-creation-third-objective',
-                objectivesTitle:'Learn to shade the drawings with accurate colours.',
+                objectivesId:'01-main-learn-day-trading-third-objective',
+                objectivesTitle:'.',
                 completed: false
             },
             {
-                objectivesId:'02-side-learn-sprite-creation-fourth-objective',
-                objectivesTitle:'Make basic stick figure animations and try to create world building animations',
+                objectivesId:'01-main-learn-day-trading-fourth-objective',
+                objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:'02-side-learn-sprite-creation-fifth-objective',
-                objectivesTitle:'Develop three hundred sprites.',
+                objectivesId:'01-main-learn-day-trading-fifth-objective',
+                objectivesTitle:'',
                 completed: false
             }
         ],
         questKeywords: [
-            'drawing',
-            'animation',
-            'aseprite',
-            'learning',
-            'assets' 
+            'website',
+            'fibonacci',
+            'sequence',
+            'trade',
+            'stock',
+            'gold',
+            'money',
+            'supply', 
+            'demand',
+            'market',
+            'structure',
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,   
+    },
+    {
+        questId:'01-main-study-gdscript-syntax',
+        questType: 'main',
+        questCategory: 'Web Learning',
+        questTitle: 'Study GDscript Syntax',
+        questDetails:'Practice learning and using GDscript syntax and practice making game logic inside of Godot.',
+        questProgress: 0,
+        questExperience: 840,
+        questRank: 'C+',
+        questImage: 'images/CodingSiteIcon.webp',
+        questRequirements: 'Laptop and time',
+        questObjectives:[
+            {
+                objectivesId:'01-main-study-gdscript-syntax-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-third-objective',
+                objectivesTitle:'.',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-study-gdscript-syntax-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'godot',
+            'gdscript',
+            'programming',
+            'gaming',
+            'logic',
+            'engine',  
         ],
         briefingLink: 'Pending',
         isComplete: false,
@@ -148,7 +156,59 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:'03-errands-get your-passport',
+        questId:'01-main-create-career-page',
+        questType: 'main',
+        questCategory: 'Web Learning',
+        questTitle: 'Create career page',
+        questDetails:'',
+        questProgress: 0,
+        questExperience: 840,
+        questRank: 'C+',
+        questImage: 'images/CodingSiteIcon.webp',
+        questRequirements: 'Laptop and time',
+        questObjectives:[
+            {
+                objectivesId:'01-main-create-career-page-first-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-create-career-page-second-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-create-career-page-third-objective',
+                objectivesTitle:'.',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-create-career-page-fourth-objective',
+                objectivesTitle:'',
+                completed: false
+            },
+            {
+                objectivesId:'01-main-create-career-page-fifth-objective',
+                objectivesTitle:'',
+                completed: false
+            }
+        ],
+        questKeywords: [
+            'career',
+            'job',
+            'webpage',
+            'qualification',
+            'requirement',
+            'application',
+            'link',
+        ],
+        briefingLink: 'Pending',
+        isComplete: false,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'03-errands-get-your-passport',
         questType: 'errand',
         questCategory: 'Fetch Quest',
         questTitle: 'Go get your passport',
@@ -156,7 +216,7 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         questProgress: 0,
         questExperience: 100,
         questRank: 'B',
-        questImage: 'Pending',
+        questImage: 'images/CvQuestIcon.jpg',
         questRequirements: 'Money, id photos, id and time',
         questObjectives:[
             {
@@ -197,54 +257,161 @@ export const activeQuests = JSON.parse(localStorage.getItem('activeQuest')) || [
         requirementsChecked: true,
     },
     {
-        questId:"03-errands-make-new-vitae's",
-        questType: 'errand',
-        questCategory: 'Create documents',
-        questTitle: "Make three new CVs",
-        questDetails:'Make three CVs with different styles so you can send them to the appropriate job openings.',
+        questId:'02-side-make-a-netherscape-map',
+        questType: 'side',
+        questCategory: 'Drawing and Shading', 
+        questTitle: 'Make a Netherscape',
+        questDetails:'Try to draw a Netherscape Map with proper shading, line work, preportions and layers. Checkout different layered images and Youtube tutorials on terrain drawing and map construction.',
         questProgress: 0,
-        questExperience: 2400,
-        questRank: 'A-',
-        questImage: 'Pending',
-        questRequirements: 'Laptop, Qualifications, job hunter page, personal documents  and time',
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/MapAndLocationIcon.png',
+        questRequirements: 'Laptop, time',
         questObjectives:[
             {
-                objectivesId:"03-errands-make-new-vitae's-first-objective",
+                objectivesId:'02-side-make-a-netherscape-map-first-objective',
+                objectivesTitle:'Checkout different layered images.',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-second-objective',
+                objectivesTitle:'Watch video on layering and perspective.',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-third-objective',
+                objectivesTitle:'Make the background layer.',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-fourth-objective',
+                objectivesTitle:'Make the mid-ground layer.',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-netherscape-map-fifth-objective',
+                objectivesTitle:'Make the foreground layer.',
+                completed: true
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'runes',
+            'terrain',
+            'landscape',
+            'ground',
+            'map',
+            'layers', 
+            'volcano'
+        ],
+        briefingLink: 'Pending',
+        isComplete: true,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'02-side-make-a-godot-shump',
+        questType: 'side',
+        questCategory: 'Drawing and Shading', 
+        questTitle: 'Make a Godot Shump',
+        questDetails:'Try to remake the godot pico 8 shump in godot try using assests and sounds to speed process',
+        questProgress: 0,
+        questExperience: 320,
+        questRank: 'B+',
+        questImage: 'images/GameControllerIcon.webp',
+        questRequirements: 'Laptop, time',
+        questObjectives:[
+            {
+                objectivesId:'02-side-make-a-godot-shump-first-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-second-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-third-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-fourth-objective',
+                objectivesTitle:'',
+                completed: true
+            },
+            {
+                objectivesId:'02-side-make-a-godot-shump-fifth-objective',
+                objectivesTitle:'',
+                completed: true
+            }
+        ],
+        questKeywords: [
+            'gaming',
+            'ground',
+            'map',
+            'layers', 
+            'shapeship',
+            'shoot',
+            'alien',
+            'planets'
+        ],
+        briefingLink: 'Pending',
+        isComplete: true,
+        isActive: false,
+        requirementsChecked: true,
+    },
+    {
+        questId:'03-errands-debug-the-calendar-page',
+        questType: 'errand',
+        questCategory: 'Debug and error handling',
+        questTitle: 'Debug calendar page',
+        questDetails:'Organise your room so it neat and easy to find things, also so if someone opens your cupboard you can chill.',
+        questProgress: 0,
+        questExperience: 640,
+        questRank: 'B-',
+        questImage: 'images/RepairToolsIcon.png',
+        questRequirements:  'Computer and Time',
+        questObjectives:[
+            {
+                objectivesId:'03-errands-debug-the-calendar-page-first-objective',
                 objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:"03-errands-make-new-vitae's-second-objective",
+                objectivesId:'03-errands-debug-the-calendar-page-second-objective',
                 objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:"03-errands-make-new-vitae's-third-objective",
+                objectivesId:'03-errands-debug-the-calendar-page-third-objective',
                 objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:"03-errands-make-new-vitae's-fourth-objective",
+                objectivesId:'03-errands-debug-the-calendar-page-fourth-objective',
                 objectivesTitle:'',
                 completed: false
             },
             {
-                objectivesId:"03-errands-make-new-vitae's-fifth-objective",
+                objectivesId:'03-errands-debug-the-calendar-page-fifth-objective',
                 objectivesTitle:'',
                 completed: false
             }
         ],
         questKeywords: [
-            'job',
-            'qualification',
-            'hunt',
-            'search',
-            'currulum',
-            'vitae'
+            'calendar',
+            'website',
+            'webpage',
+            'tasks',
+            'daily',
+            'quest',
+            'list',
         ],
         briefingLink: 'Pending',
         isComplete: false,
         isActive: false,
         requirementsChecked: true,
-    }
-]
+    },
+];

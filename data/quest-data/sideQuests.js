@@ -358,7 +358,7 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questType: 'side',
         questCategory: 'Drawing and Shading', 
         questTitle: 'Make a Netherscape',
-        questDetails:'Try to draw a Netherscape Map with proper shading, line work, preportions and layers.',
+        questDetails:'Try to draw a Netherscape Map with proper shading, line work, preportions and layers. Checkout different layered images and Youtube tutorials on terrain drawing and map construction.',
         questProgress: 0,
         questExperience: 320,
         questRank: 'B+',
@@ -367,27 +367,27 @@ export const sideQuests =  JSON.parse(localStorage.getItem('sideQuest')) ||
         questObjectives:[
             {
                 objectivesId:'02-side-make-a-netherscape-map-first-objective',
-                objectivesTitle:'',
+                objectivesTitle:'Checkout different layered images.',
                 completed: true
             },
             {
                 objectivesId:'02-side-make-a-netherscape-map-second-objective',
-                objectivesTitle:'',
+                objectivesTitle:'Watch video on layering and perspective.',
                 completed: true
             },
             {
                 objectivesId:'02-side-make-a-netherscape-map-third-objective',
-                objectivesTitle:'',
+                objectivesTitle:'Make the background layer.',
                 completed: true
             },
             {
                 objectivesId:'02-side-make-a-netherscape-map-fourth-objective',
-                objectivesTitle:'',
+                objectivesTitle:'Make the mid-ground layer.',
                 completed: true
             },
             {
                 objectivesId:'02-side-make-a-netherscape-map-fifth-objective',
-                objectivesTitle:'',
+                objectivesTitle:'Make the foreground layer.',
                 completed: true
             }
         ],
